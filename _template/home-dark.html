@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Designer Portfolio Homepage</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1A1A1A", // Dark charcoal for primary actions/text in light mode
+                        accent: "#D9F99D", // Lime-200 for a fresh, acid-green accent in dark mode
+                        "accent-dark": "#bef264", // Lime-300
+                        "background-light": "#F9FAFB",
+                        "background-dark": "#050505", // Almost pure black for higher contrast
+                        "surface-light": "#FFFFFF",
+                        "surface-dark": "#121212", // Dark grey for cards
+                        "surface-highlight": "#1E1E1E", // Slightly lighter for hover states
+                        "text-light": "#1F2937",
+                        "text-dark": "#FAFAFA", // Off-white for softer reading
+                        "text-muted-light": "#6B7280",
+                        "text-muted-dark": "#A3A3A3", // Neutral-400
+                    },
+                    fontFamily: {
+                        display: ["'Plus Jakarta Sans'", "sans-serif"],
+                        body: ["'Inter'", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                        'xl': "0.75rem",
+                        '2xl': "1rem",
+                        '3xl': "1.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .grid-pattern {
+            background-size: 40px 40px;
+            background-image:
+                linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+        }
+
+        .dark .grid-pattern {
+            background-image:
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #444;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark antialiased transition-colors duration-300 selection:bg-accent selection:text-black">
+    <header
+        class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-3xl text-primary dark:text-accent">filter_vintage</span>
+                    <span class="font-display font-bold text-lg hidden sm:block tracking-tight">Andrew.Dsgn</span>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a class="text-sm font-medium text-text-light dark:text-white hover:text-accent-dark dark:hover:text-accent transition-colors flex items-center"
+                        href="#">
+                        HOME <span class="material-symbols-outlined text-sm ml-1">expand_more</span>
+                    </a>
+                    <a class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-text-light dark:hover:text-white transition-colors"
+                        href="#">ABOUT ME</a>
+                    <a class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-text-light dark:hover:text-white transition-colors"
+                        href="#">SERVICE</a>
+                    <a class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-text-light dark:hover:text-white transition-colors"
+                        href="#">WORKS</a>
+                    <a class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-text-light dark:hover:text-white transition-colors"
+                        href="#">BLOGS</a>
+                    <a class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-text-light dark:hover:text-white transition-colors"
+                        href="#">PRICING</a>
+                </nav>
+                <div class="flex items-center space-x-4">
+                    <img alt="Profile"
+                        class="h-10 w-10 rounded-full object-cover border-2 border-white dark:border-neutral-800 shadow-sm"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiHkieubmrmhEN4d2doJOGtDK58DPUKurhGvuWWSRmidDJFO7wOKiDne0IATsqb1TlhawPgR2R6jbXYk_HgIm_VC6XFBw9b9TR2UE19txWZnjNN18o1DPhgY16URlumuM_ZrhCBNaKcp-W9gGZ_kjOR4zIlWzPYJ1QaTWHhs9zV8NmSAQ2QN4dYX8_eZSFAC_EjkONnnMxiRPavPWt3-DPzP97SDBa-6ZgNUbh7RaxvMFNnqrf4CEijsm3NiapixO_vBKnlaO-o-So" />
+                    <a class="bg-primary hover:bg-black text-white dark:bg-accent dark:text-black dark:hover:bg-white px-6 py-2.5 rounded-full text-sm font-bold transition-all hover:shadow-lg hover:shadow-accent/20"
+                        href="#">Let's talk!</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="relative pt-20 pb-32 overflow-hidden">
+        <div class="absolute inset-0 grid-pattern pointer-events-none"></div>
+        <div
+            class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-accent/10 blur-[120px] rounded-full pointer-events-none -z-10 dark:block hidden">
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8">
+                    <div
+                        class="inline-flex items-center px-3 py-1 rounded-full border border-gray-200 dark:border-white/10 bg-white/50 dark:bg-white/5 backdrop-blur-sm">
+                        <span class="w-2 h-2 rounded-full bg-green-500 mr-2 animate-pulse"></span>
+                        <span
+                            class="text-xs font-semibold uppercase tracking-wide text-text-muted-light dark:text-text-muted-dark">Available
+                            for new projects</span>
+                    </div>
+                    <h1
+                        class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-text-light dark:text-white leading-[1.1]">
+                        Transforming <br />
+                        <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-500 dark:from-accent dark:to-teal-200">abstract
+                            ideas</span> <br />
+                        into digital reality
+                    </h1>
+                    <p class="text-lg text-text-muted-light dark:text-text-muted-dark max-w-xl leading-relaxed">
+                        Blending strategy, creativity, and technology to build brands that stand out. I take your vision
+                        and craft it into a pixel-perfect experience.
+                    </p>
+                    <div
+                        class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                        <button
+                            class="bg-primary hover:bg-gray-900 text-white dark:bg-accent dark:text-black dark:hover:bg-white px-8 py-4 rounded-full font-bold transition-all shadow-xl hover:shadow-2xl dark:shadow-accent/10 transform hover:-translate-y-1">
+                            Start a project
+                        </button>
+                        <a class="flex items-center text-text-light dark:text-white font-medium hover:text-accent-dark dark:hover:text-accent transition-colors group"
+                            href="#">
+                            See works
+                            <span
+                                class="material-symbols-outlined ml-2 transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        </a>
+                    </div>
+                    <div
+                        class="flex items-center space-x-6 pt-4 text-sm font-medium text-text-muted-light dark:text-text-muted-dark border-t border-gray-100 dark:border-white/10 mt-8">
+                        <span class="flex items-center"><span
+                                class="material-symbols-outlined text-lg mr-2 text-accent">check_circle</span> 7+ Years
+                            Exp</span>
+                        <span class="flex items-center"><span
+                                class="material-symbols-outlined text-lg mr-2 text-accent">check_circle</span> 5-Star
+                            Rated</span>
+                        <span class="flex items-center"><span
+                                class="material-symbols-outlined text-lg mr-2 text-accent">check_circle</span> Quick
+                            Turnaround</span>
+                    </div>
+                </div>
+                <div class="relative hidden lg:block">
+                    <div class="grid grid-cols-2 gap-5">
+                        <div class="space-y-5 pt-16">
+                            <div
+                                class="bg-surface-light dark:bg-surface-dark p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-white/5 hover:border-accent/30 transition-colors group">
+                                <h3
+                                    class="text-5xl font-bold text-gray-900 dark:text-white group-hover:text-accent transition-colors">
+                                    239<span class="text-accent">+</span></h3>
+                                <p
+                                    class="text-xs font-bold uppercase tracking-widest text-text-muted-light dark:text-text-muted-dark mt-2">
+                                    Projects Done</p>
+                            </div>
+                            <div
+                                class="bg-surface-light dark:bg-surface-dark p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-white/5 hover:border-accent/30 transition-colors group">
+                                <h3
+                                    class="text-5xl font-bold text-gray-900 dark:text-white group-hover:text-accent transition-colors">
+                                    100<span class="text-accent">+</span></h3>
+                                <p
+                                    class="text-xs font-bold uppercase tracking-widest text-text-muted-light dark:text-text-muted-dark mt-2">
+                                    Happy Clients</p>
+                            </div>
+                            <div
+                                class="rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-white/10 relative group">
+                                <div
+                                    class="absolute inset-0 bg-accent/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 mix-blend-overlay">
+                                </div>
+                                <img alt="Mobile App UI"
+                                    class="w-full h-48 object-cover transform hover:scale-105 transition-transform duration-700 filter grayscale group-hover:grayscale-0"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuB57-OMnQjCjQcVlfCYEKlSK4tjZzh-b_K_IJIE5nuMWpb26Aw59PXrG7rU11KxGm22hoY9B8uSRQcBwHJGjT0uhOAqsW9mhaA5mnM_yakHmoIsH_eHz6iCN_oQ6Kri_tprfUQDV4ySPXV47KrgQF8l0bdLHU-ouH6AFNkN_YptTzxaDoUQrsb_mwuf_yXl-fOgva0VHgu_ggLvsuJV3sqMHOMDjeYiP1QSYZMWFWzOGsae-kH8K61d-ut3ukOX_8aeVjgBYh9XCms9" />
+                            </div>
+                        </div>
+                        <div class="space-y-5">
+                            <div
+                                class="rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-white/10 h-64 relative group">
+                                <div
+                                    class="absolute inset-0 bg-accent/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 mix-blend-overlay">
+                                </div>
+                                <img alt="Smart Watch"
+                                    class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700 filter grayscale group-hover:grayscale-0"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2JMG0IKLiXPrZfdCC3uYyNED43uOoK_0mUZgWQssCwph_zZtI-xzSL_jRsDAywJDO8u6kfyg0ezLHnUr--WZyO_ryth9by_QGUB1dei_jA8TNQf5TS6KF-PBoddknEWhHsnMqKSCapMG4pium9XjbBr2R7azmfOUqMX1a3TlejcTAGCqmAyAsgLgJGz3HtH_ibJ8jEP8XV1hmoGkxpKHwNSaJQnW7OucOOzyatcYP-UC1IfCYSr1xlgzY4K2V4Ko72rhdH9WgwSkE" />
+                            </div>
+                            <div
+                                class="rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-white/10 h-48 relative group">
+                                <div
+                                    class="absolute inset-0 bg-accent/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 mix-blend-overlay">
+                                </div>
+                                <img alt="Designer working"
+                                    class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700 filter grayscale group-hover:grayscale-0"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhUtmrlMDzVU8DBXeOzcDkEeqgW3DKFyVu8fgbSSPpJayX7V7d10NdCnmDQ2IS2LXZwznpQogJ1dXq26Se-KCCUIItE4oM4CWLx6VXrIi6KZly4cr4NtyTVWgRJVwmg-OyMzoSb9eQFPTmAKSIXPx9uCoxl09rSvWHY0kSkp9ESpoba5vg8Gs2kn2We_dXwrXLGA_0NkjbAvYYRnkvVyoshAF7z1QK-8lb6Ks5M9poPlN_uQ_-u56uBsMFcN7-zQtMed1tdjgXQkJi" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section
+        class="py-10 border-y border-gray-200 dark:border-white/5 bg-white/50 dark:bg-surface-dark/50 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p
+                class="text-center text-xs font-bold tracking-[0.2em] text-text-muted-light dark:text-text-muted-dark mb-8 uppercase opacity-60">
+                Powering design for industry leaders</p>
+            <div
+                class="flex flex-wrap justify-center gap-12 lg:gap-20 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+                <div class="flex items-center text-xl font-bold font-display text-text-light dark:text-white"><span
+                        class="material-symbols-outlined mr-2">rocket_launch</span>RocketLab</div>
+                <div class="flex items-center text-xl font-bold font-display text-text-light dark:text-white"><span
+                        class="material-symbols-outlined mr-2">deployed_code</span>CodeFlow</div>
+                <div class="flex items-center text-xl font-bold font-display text-text-light dark:text-white"><span
+                        class="material-symbols-outlined mr-2">all_inclusive</span>Infinite</div>
+                <div class="flex items-center text-xl font-bold font-display text-text-light dark:text-white"><span
+                        class="material-symbols-outlined mr-2">bolt</span>BoltShift</div>
+                <div class="flex items-center text-xl font-bold font-display text-text-light dark:text-white"><span
+                        class="material-symbols-outlined mr-2">cruelty_free</span>Naturals</div>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 bg-background-light dark:bg-background-dark relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div>
+                    <span class="text-xs font-bold tracking-widest text-accent uppercase mb-4 block">Services</span>
+                    <h2 class="text-3xl md:text-5xl font-bold text-text-light dark:text-white leading-tight">Elevating
+                        brands with <br /> comprehensive design</h2>
+                </div>
+                <button
+                    class="hidden md:inline-flex bg-surface-light dark:bg-surface-dark hover:bg-black hover:text-white border border-gray-300 dark:border-neutral-800 text-text-light dark:text-white px-8 py-3 rounded-full font-medium transition-all duration-300 shadow-sm hover:border-accent hover:text-accent">
+                    View all services
+                </button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div
+                    class="group bg-surface-light dark:bg-surface-dark p-8 rounded-2xl border border-gray-100 dark:border-white/5 hover:border-accent/50 dark:hover:border-accent transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+                    <div
+                        class="absolute top-0 right-0 p-8 opacity-0 group-hover:opacity-10 group-hover:scale-150 transition-all duration-500">
+                        <span class="material-symbols-outlined text-9xl text-accent">design_services</span>
+                    </div>
+                    <div
+                        class="w-14 h-14 bg-gray-100 dark:bg-white/5 rounded-full flex items-center justify-center mb-6 text-primary dark:text-accent group-hover:bg-accent group-hover:text-black transition-colors">
+                        <span class="material-symbols-outlined text-3xl">design_services</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-light dark:text-white mb-3">UI/UX design</h3>
+                    <p class="text-text-muted-light dark:text-text-muted-dark text-sm leading-relaxed mb-6">
+                        Crafting user-centered digital experiences with intuitive interfaces and seamless interactions.
+                    </p>
+                    <a class="inline-flex items-center text-xs font-bold uppercase tracking-wider text-text-light dark:text-white group-hover:text-accent transition-colors"
+                        href="#">
+                        Learn more <span
+                            class="material-symbols-outlined text-sm ml-1 transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </a>
+                </div>
+                <div
+                    class="group bg-surface-light dark:bg-surface-dark p-8 rounded-2xl border border-gray-100 dark:border-white/5 hover:border-accent/50 dark:hover:border-accent transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+                    <div
+                        class="w-14 h-14 bg-gray-100 dark:bg-white/5 rounded-full flex items-center justify-center mb-6 text-primary dark:text-accent group-hover:bg-accent group-hover:text-black transition-colors">
+                        <span class="material-symbols-outlined text-3xl">grid_view</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-light dark:text-white mb-3">Design systems</h3>
+                    <p class="text-text-muted-light dark:text-text-muted-dark text-sm leading-relaxed mb-6">
+                        Developing cohesive design frameworks that unify brand identity and streamline workflows.
+                    </p>
+                    <a class="inline-flex items-center text-xs font-bold uppercase tracking-wider text-text-light dark:text-white group-hover:text-accent transition-colors"
+                        href="#">
+                        Learn more <span
+                            class="material-symbols-outlined text-sm ml-1 transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </a>
+                </div>
+                <div
+                    class="group bg-surface-light dark:bg-surface-dark p-8 rounded-2xl border border-gray-100 dark:border-white/5 hover:border-accent/50 dark:hover:border-accent transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+                    <div
+                        class="w-14 h-14 bg-gray-100 dark:bg-white/5 rounded-full flex items-center justify-center mb-6 text-primary dark:text-accent group-hover:bg-accent group-hover:text-black transition-colors">
+                        <span class="material-symbols-outlined text-3xl">draw</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-light dark:text-white mb-3">Logo &amp; branding</h3>
+                    <p class="text-text-muted-light dark:text-text-muted-dark text-sm leading-relaxed mb-6">
+                        Creating memorable logos and comprehensive branding strategies that reflect a brand's identity
+                        and values.
+                    </p>
+                    <a class="inline-flex items-center text-xs font-bold uppercase tracking-wider text-text-light dark:text-white group-hover:text-accent transition-colors"
+                        href="#">
+                        Learn more <span
+                            class="material-symbols-outlined text-sm ml-1 transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </a>
+                </div>
+                <div
+                    class="group bg-surface-light dark:bg-surface-dark p-8 rounded-2xl border border-gray-100 dark:border-white/5 hover:border-accent/50 dark:hover:border-accent transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+                    <div
+                        class="w-14 h-14 bg-gray-100 dark:bg-white/5 rounded-full flex items-center justify-center mb-6 text-primary dark:text-accent group-hover:bg-accent group-hover:text-black transition-colors">
+                        <span class="material-symbols-outlined text-3xl">palette</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-light dark:text-white mb-3">2D &amp; 3D Illustration</h3>
+                    <p class="text-text-muted-light dark:text-text-muted-dark text-sm leading-relaxed mb-6">
+                        Bringing concepts to life through vibrant 2D and 3D illustrations, adding creativity to visual
+                        storytelling.
+                    </p>
+                    <a class="inline-flex items-center text-xs font-bold uppercase tracking-wider text-text-light dark:text-white group-hover:text-accent transition-colors"
+                        href="#">
+                        Learn more <span
+                            class="material-symbols-outlined text-sm ml-1 transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </a>
+                </div>
+                <div
+                    class="group bg-surface-light dark:bg-surface-dark p-8 rounded-2xl border border-gray-100 dark:border-white/5 hover:border-accent/50 dark:hover:border-accent transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+                    <div
+                        class="w-14 h-14 bg-gray-100 dark:bg-white/5 rounded-full flex items-center justify-center mb-6 text-primary dark:text-accent group-hover:bg-accent group-hover:text-black transition-colors">
+                        <span class="material-symbols-outlined text-3xl">campaign</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-light dark:text-white mb-3">Marketing collateral</h3>
+                    <p class="text-text-muted-light dark:text-text-muted-dark text-sm leading-relaxed mb-6">
+                        Designing impactful marketing materials like brochures, flyers, and ads that effectively
+                        communicate message.
+                    </p>
+                    <a class="inline-flex items-center text-xs font-bold uppercase tracking-wider text-text-light dark:text-white group-hover:text-accent transition-colors"
+                        href="#">
+                        Learn more <span
+                            class="material-symbols-outlined text-sm ml-1 transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </a>
+                </div>
+                <div
+                    class="group bg-surface-light dark:bg-surface-dark p-8 rounded-2xl border border-gray-100 dark:border-white/5 hover:border-accent/50 dark:hover:border-accent transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+                    <div
+                        class="w-14 h-14 bg-gray-100 dark:bg-white/5 rounded-full flex items-center justify-center mb-6 text-primary dark:text-accent group-hover:bg-accent group-hover:text-black transition-colors">
+                        <span class="material-symbols-outlined text-3xl">slideshow</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-text-light dark:text-white mb-3">Pitchdecks</h3>
+                    <p class="text-text-muted-light dark:text-text-muted-dark text-sm leading-relaxed mb-6">
+                        Building visually compelling and persuasive pitch decks to help businesses and startups present
+                        their ideas.
+                    </p>
+                    <a class="inline-flex items-center text-xs font-bold uppercase tracking-wider text-text-light dark:text-white group-hover:text-accent transition-colors"
+                        href="#">
+                        Learn more <span
+                            class="material-symbols-outlined text-sm ml-1 transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 bg-gray-50 dark:bg-[#080808]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div>
+                    <span
+                        class="text-xs font-bold tracking-widest text-text-muted-light dark:text-text-muted-dark uppercase mb-4 block">Selected
+                        Works</span>
+                    <h2 class="text-3xl md:text-5xl font-bold text-text-light dark:text-white">Featured projects</h2>
+                </div>
+                <div class="flex gap-2">
+                    <button
+                        class="w-12 h-12 rounded-full border border-gray-200 dark:border-neutral-800 flex items-center justify-center hover:bg-white dark:hover:bg-surface-highlight transition-colors">
+                        <span class="material-symbols-outlined text-text-light dark:text-white">arrow_back</span>
+                    </button>
+                    <button
+                        class="w-12 h-12 rounded-full border border-gray-200 dark:border-neutral-800 bg-white dark:bg-surface-highlight flex items-center justify-center hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors">
+                        <span class="material-symbols-outlined text-text-light dark:text-white">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+            <div class="space-y-12">
+                <div
+                    class="bg-surface-light dark:bg-surface-dark rounded-3xl p-6 md:p-8 shadow-sm border border-gray-100 dark:border-white/5 transition-all hover:border-accent/30 hover:shadow-2xl hover:shadow-accent/5">
+                    <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
+                        <div
+                            class="rounded-2xl overflow-hidden bg-gray-100 dark:bg-neutral-900 aspect-[4/3] group relative">
+                            <img alt="Dashboard Design"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVMe4MVJOni0Z2stQRdoDBsdVU7_9-4w-FWu_xfCnIh-wPEWJD9448xaoyipRfJJ180anQtrDOUQM-fjPdxbWyjsnBFgdwxV7Acrt2yDrZlP7y-_Ei2lUSz5huxvoobhVcGXFKaWHRLypaNoq7nXQcXkHPnTV9sIoDypD0yf9ZDKJXY8LncsR2fmYctAtQ0U9rJbKr0-nDrG-I6HvP4vFs5k5rOPLA3rablm0oLSE8eqjESJouEkZc_ivIYU-P257gQzEBJKW6FLtv" />
+                            <div
+                                class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                                <span
+                                    class="bg-white/20 backdrop-blur-md text-white px-6 py-2 rounded-full font-bold opacity-0 group-hover:opacity-100 transition-all translate-y-4 group-hover:translate-y-0">View
+                                    Case Study</span>
+                            </div>
+                        </div>
+                        <div class="space-y-8">
+                            <div>
+                                <h3 class="text-3xl font-bold text-text-light dark:text-white mb-4">Union - Invoice
+                                    Management Dashboard</h3>
+                                <p class="text-text-muted-light dark:text-text-muted-dark leading-relaxed">
+                                    Union offers a clear overview of pending, paid, and overdue invoices, with features
+                                    like automated reminders, customizable invoice templates, and detailed financial
+                                    reporting.
+                                </p>
+                            </div>
+                            <div
+                                class="grid grid-cols-2 gap-6 text-sm border-t border-b border-gray-100 dark:border-white/10 py-6">
+                                <div>
+                                    <p
+                                        class="text-xs uppercase text-text-muted-light dark:text-text-muted-dark font-bold tracking-wider mb-2">
+                                        Client</p>
+                                    <p class="font-semibold text-text-light dark:text-white">Jay Idzes</p>
+                                </div>
+                                <div>
+                                    <p
+                                        class="text-xs uppercase text-text-muted-light dark:text-text-muted-dark font-bold tracking-wider mb-2">
+                                        Year</p>
+                                    <p class="font-semibold text-text-light dark:text-white">2024</p>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="bg-gray-100 dark:bg-accent/10 border border-transparent dark:border-accent/20 text-text-light dark:text-accent px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide">UIUX
+                                        DESIGN</span>
+                                    <span
+                                        class="bg-gray-100 dark:bg-accent/10 border border-transparent dark:border-accent/20 text-text-light dark:text-accent px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide">LOGO
+                                        &amp; BRANDING</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="bg-surface-light dark:bg-surface-dark rounded-3xl p-6 md:p-8 shadow-sm border border-gray-100 dark:border-white/5 transition-all hover:border-accent/30 hover:shadow-2xl hover:shadow-accent/5">
+                    <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
+                        <div
+                            class="rounded-2xl overflow-hidden bg-gray-100 dark:bg-neutral-900 aspect-[4/3] group relative md:order-2">
+                            <img alt="Mobile App"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeXNb0arBf9xfn4aj1G4qIztBuNMwb6K0qBnItJSTdxYtTqG6aF54stp8UmwlGvMkIfETOKR9EscRuHNAZXnxFZe1GBcPyGZtzPkFswKFEKx5qvWJAFV-QKeN3INkFIH6iBSWI03zCTEwOi9SnbZs7WFEEuwCxuGorVxlDTg3-JeH0rpEubjBFlF-0-5vk4vCZ88fGziBPX-RW6tZqyLwH2i3BifU4UOsrEsfHx9PZLbmJDJkCW4iHYu0j3kiJbiPQ4beBNqpN3OSc" />
+                            <div
+                                class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                                <span
+                                    class="bg-white/20 backdrop-blur-md text-white px-6 py-2 rounded-full font-bold opacity-0 group-hover:opacity-100 transition-all translate-y-4 group-hover:translate-y-0">View
+                                    Case Study</span>
+                            </div>
+                        </div>
+                        <div class="space-y-8 md:order-1">
+                            <div>
+                                <h3 class="text-3xl font-bold text-text-light dark:text-white mb-4">Wally - Wealth
+                                    Management Apps</h3>
+                                <p class="text-text-muted-light dark:text-text-muted-dark leading-relaxed">
+                                    Wally helps users track spending, set financial goals, and manage investments with
+                                    ease. Featuring budgeting tools, portfolio analysis, and real-time insights.
+                                </p>
+                            </div>
+                            <div
+                                class="grid grid-cols-2 gap-6 text-sm border-t border-b border-gray-100 dark:border-white/10 py-6">
+                                <div>
+                                    <p
+                                        class="text-xs uppercase text-text-muted-light dark:text-text-muted-dark font-bold tracking-wider mb-2">
+                                        Client</p>
+                                    <p class="font-semibold text-text-light dark:text-white">Justin Hubner</p>
+                                </div>
+                                <div>
+                                    <p
+                                        class="text-xs uppercase text-text-muted-light dark:text-text-muted-dark font-bold tracking-wider mb-2">
+                                        Year</p>
+                                    <p class="font-semibold text-text-light dark:text-white">2024</p>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="bg-gray-100 dark:bg-accent/10 border border-transparent dark:border-accent/20 text-text-light dark:text-accent px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide">UIUX
+                                        DESIGN</span>
+                                    <span
+                                        class="bg-gray-100 dark:bg-accent/10 border border-transparent dark:border-accent/20 text-text-light dark:text-accent px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide">APP
+                                        DEV</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="bg-surface-light dark:bg-surface-dark rounded-3xl p-6 md:p-8 shadow-sm border border-gray-100 dark:border-white/5 transition-all hover:border-accent/30 hover:shadow-2xl hover:shadow-accent/5">
+                    <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
+                        <div
+                            class="rounded-2xl overflow-hidden bg-gray-100 dark:bg-neutral-900 aspect-[4/3] group relative">
+                            <img alt="Instagram Post"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7bmyW1wmY62Vl7gvlIHDrXa_u70ARZ4Zni6y-UggxSpGHMgrX1CSMQQZ0lQKwUGPXFY-WHGUemPC9sOO-R0F9Dh6Vq6npglcCrbMt8k38x5C5b2jyKqdVo3ltPWtrIUxVc4iDOxOgMKmVXjFcGiyBTnBC9X_8IhIRn40YdvGZy9ROmCdG_m0EnUOh_OLpncHTOqUGbZ3DI3kJvB6_hRVcPpqAcIRt7Nc9oZACdpRVyvjw_p8cBj2ISWVVSozAjBUs8WPbAgg-4I5A" />
+                            <div
+                                class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                                <span
+                                    class="bg-white/20 backdrop-blur-md text-white px-6 py-2 rounded-full font-bold opacity-0 group-hover:opacity-100 transition-all translate-y-4 group-hover:translate-y-0">View
+                                    Case Study</span>
+                            </div>
+                        </div>
+                        <div class="space-y-8">
+                            <div>
+                                <h3 class="text-3xl font-bold text-text-light dark:text-white mb-4">Disaina - Instagram
+                                    Post Design</h3>
+                                <p class="text-text-muted-light dark:text-text-muted-dark leading-relaxed">
+                                    With a wide range of customizable templates, fonts, and design elements, it
+                                    simplifies the process of producing professional-quality visuals.
+                                </p>
+                            </div>
+                            <div
+                                class="grid grid-cols-2 gap-6 text-sm border-t border-b border-gray-100 dark:border-white/10 py-6">
+                                <div>
+                                    <p
+                                        class="text-xs uppercase text-text-muted-light dark:text-text-muted-dark font-bold tracking-wider mb-2">
+                                        Client</p>
+                                    <p class="font-semibold text-text-light dark:text-white">Mees Hilgers</p>
+                                </div>
+                                <div>
+                                    <p
+                                        class="text-xs uppercase text-text-muted-light dark:text-text-muted-dark font-bold tracking-wider mb-2">
+                                        Year</p>
+                                    <p class="font-semibold text-text-light dark:text-white">2024</p>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="bg-gray-100 dark:bg-accent/10 border border-transparent dark:border-accent/20 text-text-light dark:text-accent px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide">LOGO
+                                        &amp; BRANDING</span>
+                                    <span
+                                        class="bg-gray-100 dark:bg-accent/10 border border-transparent dark:border-accent/20 text-text-light dark:text-accent px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide">SOCIAL
+                                        MEDIA</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <button
+                    class="bg-primary hover:bg-black text-white dark:bg-white dark:text-black dark:hover:bg-accent px-8 py-3 rounded-full font-bold transition-all shadow-lg hover:scale-105">
+                    Load more projects
+                </button>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 bg-background-light dark:bg-background-dark">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span
+                    class="text-xs font-bold tracking-widest text-text-muted-light dark:text-text-muted-dark uppercase mb-4 block">Got
+                    a question?</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-text-light dark:text-white">Frequently Asked Questions
+                </h2>
+            </div>
+            <div class="space-y-4">
+                <div
+                    class="bg-surface-light dark:bg-surface-dark rounded-2xl p-6 border border-gray-100 dark:border-white/5 shadow-sm">
+                    <button class="flex justify-between items-center w-full text-left">
+                        <span class="font-bold text-text-light dark:text-white">What services do you offer as a
+                            designer?</span>
+                        <span
+                            class="material-symbols-outlined text-text-muted-light dark:text-text-muted-dark">remove</span>
+                    </button>
+                    <div
+                        class="mt-4 text-text-muted-light dark:text-text-muted-dark text-sm leading-relaxed border-t border-gray-100 dark:border-white/5 pt-4">
+                        I specialize in a wide range of design services, including branding, web design, UI/UX design,
+                        and visual identity creation. My goal is to deliver designs that not only look great but also
+                        function seamlessly, enhancing the user experience and conveying your brand message clearly.
+                    </div>
+                </div>
+                <div
+                    class="bg-surface-light dark:bg-surface-dark rounded-2xl p-6 border border-gray-100 dark:border-white/5 shadow-sm transition-colors hover:border-gray-300 dark:hover:border-accent/30 group">
+                    <button class="flex justify-between items-center w-full text-left">
+                        <span
+                            class="font-bold text-text-light dark:text-white group-hover:text-accent transition-colors">What
+                            is your design process like?</span>
+                        <span
+                            class="material-symbols-outlined text-text-muted-light dark:text-text-muted-dark group-hover:text-white">add</span>
+                    </button>
+                </div>
+                <div
+                    class="bg-surface-light dark:bg-surface-dark rounded-2xl p-6 border border-gray-100 dark:border-white/5 shadow-sm transition-colors hover:border-gray-300 dark:hover:border-accent/30 group">
+                    <button class="flex justify-between items-center w-full text-left">
+                        <span
+                            class="font-bold text-text-light dark:text-white group-hover:text-accent transition-colors">How
+                            long does a typical design project take?</span>
+                        <span
+                            class="material-symbols-outlined text-text-muted-light dark:text-text-muted-dark group-hover:text-white">add</span>
+                    </button>
+                </div>
+                <div
+                    class="bg-surface-light dark:bg-surface-dark rounded-2xl p-6 border border-gray-100 dark:border-white/5 shadow-sm transition-colors hover:border-gray-300 dark:hover:border-accent/30 group">
+                    <button class="flex justify-between items-center w-full text-left">
+                        <span
+                            class="font-bold text-text-light dark:text-white group-hover:text-accent transition-colors">Can
+                            I be involved in the design process?</span>
+                        <span
+                            class="material-symbols-outlined text-text-muted-light dark:text-text-muted-dark group-hover:text-white">add</span>
+                    </button>
+                </div>
+                <div
+                    class="bg-surface-light dark:bg-surface-dark rounded-2xl p-6 border border-gray-100 dark:border-white/5 shadow-sm transition-colors hover:border-gray-300 dark:hover:border-accent/30 group">
+                    <button class="flex justify-between items-center w-full text-left">
+                        <span
+                            class="font-bold text-text-light dark:text-white group-hover:text-accent transition-colors">Do
+                            you offer revisions or post-project support?</span>
+                        <span
+                            class="material-symbols-outlined text-text-muted-light dark:text-text-muted-dark group-hover:text-white">add</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-20 bg-gray-50 dark:bg-[#080808]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span
+                    class="text-xs font-bold tracking-widest text-text-muted-light dark:text-text-muted-dark uppercase mb-4 block">Testimonials</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-text-light dark:text-white">Words from satisfied clients
+                </h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div
+                    class="bg-white dark:bg-surface-dark p-8 md:p-10 rounded-2xl shadow-sm border border-gray-100 dark:border-white/5 relative hover:border-accent/30 transition-colors">
+                    <span
+                        class="material-symbols-outlined text-4xl text-blue-500 dark:text-accent mb-6 block opacity-50">format_quote</span>
+                    <p class="text-text-muted-light dark:text-gray-300 mb-8 leading-loose italic text-lg font-light">
+                        "Andrew's attention to detail and passion for design shine through in every project. His ability
+                        to transform abstract ideas into compelling visual solutions is truly remarkable. I highly
+                        recommend him for you all!"
+                    </p>
+                    <div class="flex items-center justify-between border-t border-gray-100 dark:border-white/10 pt-6">
+                        <div class="flex items-center space-x-4">
+                            <img alt="John Davis"
+                                class="w-12 h-12 rounded-full border-2 border-white dark:border-neutral-700"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1fi3f-9w0MAtA5TF_NaKJieeA5x81YXr7uSDwXIdvWpd51GyZnyOcuh7FKiGxGWO164ToWl2yx9HDyb9u3h2sg3toSl3sv5b8pQ_44kHtR4zG3MRKjanACiidG5EAhlgIrODiXPQA8Zy1kTSaY2Yqg9VjCqq03IkFWIM8HdMTPHXztkgIPx_hCJIfmjGKi8qeXLYTC2_UKCeOLl_GvfZo0TzSe4AQlZ-1bUcUVwMefsaWxHTXMJiwzoxhhd8SYpD-l9SeqEQAK7s9" />
+                            <div>
+                                <h4 class="font-bold text-base text-text-light dark:text-white">John Davis</h4>
+                                <p
+                                    class="text-xs text-text-muted-light dark:text-text-muted-dark uppercase tracking-wider">
+                                    Founder of Lumina Studios</p>
+                            </div>
+                        </div>
+                        <div class="flex text-yellow-400 dark:text-accent">
+                            <span class="material-symbols-outlined text-sm fill-current">star</span>
+                            <span class="material-symbols-outlined text-sm fill-current">star</span>
+                            <span class="material-symbols-outlined text-sm fill-current">star</span>
+                            <span class="material-symbols-outlined text-sm fill-current">star</span>
+                            <span class="material-symbols-outlined text-sm fill-current">star</span>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="bg-white dark:bg-surface-dark p-8 md:p-10 rounded-2xl shadow-sm border border-gray-100 dark:border-white/5 relative hover:border-accent/30 transition-colors">
+                    <span
+                        class="material-symbols-outlined text-4xl text-blue-500 dark:text-accent mb-6 block opacity-50">format_quote</span>
+                    <p class="text-text-muted-light dark:text-gray-300 mb-8 leading-loose italic text-lg font-light">
+                        "From the first consultation to the final delivery, Andrew impressed us with his
+                        professionalism. His designs elevated our digital presence, and we receive many compliments on
+                        the aesthetic and usability of our website."
+                    </p>
+                    <div class="flex items-center justify-between border-t border-gray-100 dark:border-white/10 pt-6">
+                        <div class="flex items-center space-x-4">
+                            <img alt="Sarah Johnson"
+                                class="w-12 h-12 rounded-full border-2 border-white dark:border-neutral-700"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDC2OgNrxSoe6DipsVsHrsbfLKgeOuP20M-CckBbbKusrxT8MLjMZfOd_q6bTx3rqiwQQ9tx-8ZYA3kdNZW13yJFKwFzGk2I_EghnK2wDsBgJd_EKS84JXerHwBLkzP2T01u6vPR2o7YaBN51WRY12A856J-i3Kbl_NoYpsG2EJWrnwtmBMj_2gvQ-G93wKmQ1DinkiKCEpxpHHI32CrgtYW8VGlia3D10DDakvef-k-AJg7UeiW_yxjg8_hnJhFT7-A9SwTlgD0xJ5" />
+                            <div>
+                                <h4 class="font-bold text-base text-text-light dark:text-white">Sarah Johnson</h4>
+                                <p
+                                    class="text-xs text-text-muted-light dark:text-text-muted-dark uppercase tracking-wider">
+                                    Marketing at Horizon Tech</p>
+                            </div>
+                        </div>
+                        <div class="flex text-yellow-400 dark:text-accent">
+                            <span class="material-symbols-outlined text-sm fill-current">star</span>
+                            <span class="material-symbols-outlined text-sm fill-current">star</span>
+                            <span class="material-symbols-outlined text-sm fill-current">star</span>
+                            <span class="material-symbols-outlined text-sm fill-current">star</span>
+                            <span class="material-symbols-outlined text-sm fill-current">star</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 bg-background-light dark:bg-background-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span
+                    class="text-xs font-bold tracking-widest text-text-muted-light dark:text-text-muted-dark uppercase mb-4 block">Andrew's
+                    Design Journal</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-text-light dark:text-white">Latest insights &amp;
+                    articles</h2>
+            </div>
+            <div class="space-y-6 max-w-4xl mx-auto">
+                <div
+                    class="bg-white dark:bg-surface-dark p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-white/5 flex flex-col md:flex-row gap-8 transition-all hover:shadow-lg hover:border-gray-200 dark:hover:border-accent/30 group">
+                    <div class="w-full md:w-64 h-48 md:h-auto rounded-xl overflow-hidden shrink-0 relative">
+                        <img alt="Minimalist Design"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrnH0aBHK4t9WdBLhb8suORaTGzIeKGRwBDNfJ8brfHKr6_Oyo3DWSIPxlNtOF8LlAhnO8JrqaIT3y1WAQGBLdq_2jegU2nQ8C8wtoZ4Il_bkZBaC7qo3IOvMgG1f4ly0pFht6vAjMlzOS9YtjcnfjwHXY1ZmcYSTtmZr_dK1gfoM30Hm0tSRyggJxQPOWyMOVeJEYEhNWaw51I371cg9VQaO1t9YZCNiS0D-LU2xhgkUmJI8BkA_91fFlYuowcMiar4Br4Dgsln2F" />
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
+                    </div>
+                    <div class="flex flex-col justify-center py-2">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span
+                                class="text-xs font-bold uppercase tracking-wide text-accent dark:text-accent bg-gray-100 dark:bg-accent/10 px-2 py-1 rounded">Design</span>
+                            <span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">June 23,
+                                2024</span>
+                        </div>
+                        <h3
+                            class="text-2xl font-bold text-text-light dark:text-white mb-3 group-hover:text-accent-dark dark:group-hover:text-accent transition-colors cursor-pointer">
+                            The power of minimalist design: less is more</h3>
+                        <p
+                            class="text-sm text-text-muted-light dark:text-text-muted-dark mb-5 line-clamp-2 leading-relaxed">
+                            In today's fast-paced digital world, cluttered designs can overwhelm users, obscure your
+                            brand message, and lead to poor user experiences.
+                        </p>
+                        <a class="inline-flex items-center text-xs font-bold uppercase tracking-wider text-text-light dark:text-white group-hover:text-accent transition-colors"
+                            href="#">
+                            Read article <span
+                                class="material-symbols-outlined text-sm ml-1 transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+                <div
+                    class="bg-white dark:bg-surface-dark p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-white/5 flex flex-col md:flex-row gap-8 transition-all hover:shadow-lg hover:border-gray-200 dark:hover:border-accent/30 group">
+                    <div class="w-full md:w-64 h-48 md:h-auto rounded-xl overflow-hidden shrink-0 relative">
+                        <img alt="User Centered Design"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBr2Au9o8o6R-te54pYzzzn1k54Y_jbLm-afB8CC_VVnlFNePpJgcXZC2S0XKaOxYsvn4c2HeL4fzr4qT8e6U9U3DZ_5J8ag3H0V2kRxOZw8-Km1pFl8f2SW4l1CWZ0bbNrgkQ6F8QTYnJJ6-sEgmxwYJDlmoMmOyF3bTbMJvGTfb9-ihk2t9uOiDqd5sxxsr_WvOnobGgknsz4XUNY_TpveZr-R7HtL1uDGEf23SLI6F_V3f5e66j0SbWzdrgdMRRYOqzwFvdWw7SG" />
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
+                    </div>
+                    <div class="flex flex-col justify-center py-2">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span
+                                class="text-xs font-bold uppercase tracking-wide text-accent dark:text-accent bg-gray-100 dark:bg-accent/10 px-2 py-1 rounded">UX/UI</span>
+                            <span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">June 23,
+                                2024</span>
+                        </div>
+                        <h3
+                            class="text-2xl font-bold text-text-light dark:text-white mb-3 group-hover:text-accent-dark dark:group-hover:text-accent transition-colors cursor-pointer">
+                            Why user-centered design is crucial for your website</h3>
+                        <p
+                            class="text-sm text-text-muted-light dark:text-text-muted-dark mb-5 line-clamp-2 leading-relaxed">
+                            A website is far more than just a digital storefront—it shapes how users perceive your brand
+                            and interact with your products.
+                        </p>
+                        <a class="inline-flex items-center text-xs font-bold uppercase tracking-wider text-text-light dark:text-white group-hover:text-accent transition-colors"
+                            href="#">
+                            Read article <span
+                                class="material-symbols-outlined text-sm ml-1 transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+                <div
+                    class="bg-white dark:bg-surface-dark p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-white/5 flex flex-col md:flex-row gap-8 transition-all hover:shadow-lg hover:border-gray-200 dark:hover:border-accent/30 group">
+                    <div class="w-full md:w-64 h-48 md:h-auto rounded-xl overflow-hidden shrink-0 relative">
+                        <img alt="Branding"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbWTo1fI_fIYOtPIb271JwlmVSa7fjGLKuRI3e3PWGDxcXotQykQpi-S5zl4e5H0wJ3lE2tlsaQG56BfKoWjiLlfoRXIbpvkr7VvRBo_57030P76sBsM-KEXa0h_E2PJq-18zKG-pw_XN2soS5IGzqoCLKgMOfLAokjrL2er70Gsy4MjesI22JPtvyBYyskfblMbcntvbQUpWrBI50--8hQDtXz0Ri8I8F4exaLZ6cUcFxkFyX1TD2onilnmOBOD-D8DPCiHEjeiPf" />
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
+                    </div>
+                    <div class="flex flex-col justify-center py-2">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span
+                                class="text-xs font-bold uppercase tracking-wide text-accent dark:text-accent bg-gray-100 dark:bg-accent/10 px-2 py-1 rounded">Branding</span>
+                            <span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">June 23,
+                                2024</span>
+                        </div>
+                        <h3
+                            class="text-2xl font-bold text-text-light dark:text-white mb-3 group-hover:text-accent-dark dark:group-hover:text-accent transition-colors cursor-pointer">
+                            Branding beyond the logo: creating a visual identity</h3>
+                        <p
+                            class="text-sm text-text-muted-light dark:text-text-muted-dark mb-5 line-clamp-2 leading-relaxed">
+                            When people think of branding, they often think of a logo—but a strong visual identity goes
+                            far beyond that.
+                        </p>
+                        <a class="inline-flex items-center text-xs font-bold uppercase tracking-wider text-text-light dark:text-white group-hover:text-accent transition-colors"
+                            href="#">
+                            Read article <span
+                                class="material-symbols-outlined text-sm ml-1 transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 px-4 sm:px-6 lg:px-8">
+        <div
+            class="max-w-5xl mx-auto bg-primary dark:bg-accent rounded-[2rem] p-12 md:p-20 text-center relative overflow-hidden group">
+            <div class="absolute inset-0 opacity-10 dark:opacity-20 transition-opacity"
+                style="background-image: radial-gradient(currentColor 1px, transparent 1px); background-size: 20px 20px; color: white; dark:color: black;">
+            </div>
+            <div class="absolute -right-20 -top-20 w-64 h-64 bg-white/10 dark:bg-black/10 rounded-full blur-3xl"></div>
+            <div class="absolute -left-20 -bottom-20 w-64 h-64 bg-white/10 dark:bg-black/10 rounded-full blur-3xl">
+            </div>
+            <div class="relative z-10">
+                <span
+                    class="text-xs font-bold tracking-[0.3em] text-white/70 dark:text-black/60 uppercase mb-6 block">Ready
+                    to start?</span>
+                <h2 class="text-3xl md:text-5xl font-bold text-white dark:text-black mb-4">Let's create something
+                    extraordinary</h2>
+                <h2 class="text-xl md:text-2xl font-medium text-white/80 dark:text-black/70 mb-10 max-w-2xl mx-auto">
+                    Book a free consultation call and get a <span
+                        class="font-bold underline decoration-2 underline-offset-4">special 60% discount</span> for new
+                    clients.</h2>
+                <button
+                    class="bg-white hover:bg-gray-100 text-primary dark:bg-black dark:text-white dark:hover:bg-neutral-800 px-10 py-5 rounded-full font-bold text-lg transition-all transform hover:scale-105 shadow-xl hover:shadow-2xl">
+                    Chat with Andrew
+                </button>
+            </div>
+        </div>
+    </section>
+    <footer
+        class="bg-background-light dark:bg-background-dark border-t border-gray-200 dark:border-white/5 pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-8">
+                <div
+                    class="flex space-x-8 text-xs font-bold uppercase tracking-widest text-text-muted-light dark:text-text-muted-dark mb-6 md:mb-0">
+                    <a class="hover:text-primary dark:hover:text-accent transition-colors" href="#">Dribbble</a>
+                    <a class="hover:text-primary dark:hover:text-accent transition-colors" href="#">Behance</a>
+                    <a class="hover:text-primary dark:hover:text-accent transition-colors" href="#">LinkedIn</a>
+                    <a class="hover:text-primary dark:hover:text-accent transition-colors" href="#">X (Twitter)</a>
+                </div>
+                <div class="mb-6 md:mb-0 text-center">
+                    <span
+                        class="material-symbols-outlined text-6xl text-primary dark:text-accent animate-spin-slow opacity-80"
+                        style="animation-duration: 15s;">filter_vintage</span>
+                    <p class="mt-4 text-sm font-semibold text-text-light dark:text-white">Andrew.Dsgn</p>
+                </div>
+                <div
+                    class="flex space-x-8 text-xs font-bold uppercase tracking-widest text-text-muted-light dark:text-text-muted-dark">
+                    <a class="hover:text-primary dark:hover:text-accent transition-colors" href="#">Change Log</a>
+                    <a class="hover:text-primary dark:hover:text-accent transition-colors" href="#">Privacy</a>
+                    <a class="hover:text-primary dark:hover:text-accent transition-colors" href="#">License</a>
+                </div>
+            </div>
+            <div
+                class="border-t border-gray-200 dark:border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-text-muted-light dark:text-neutral-500 text-xs">
+                    © 2024 Andrew Design Portfolio. All rights reserved.
+                </p>
+                <div class="bg-gray-100 dark:bg-white/5 px-4 py-2 rounded-full">
+                    <p
+                        class="text-[10px] font-bold uppercase tracking-widest text-text-muted-light dark:text-neutral-400">
+                        Built with Passion &amp; Code
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

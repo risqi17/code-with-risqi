@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Project Details - Portfolio</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b5bee",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101522",
+                        "card-dark": "#1C202B",
+                        "border-dark": "#282c39",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-x-hidden transition-colors duration-200">
+    <!-- Top Navigation -->
+    <header
+        class="w-full border-b border-gray-200 dark:border-border-dark bg-white/80 dark:bg-background-dark/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-[1280px] mx-auto px-4 md:px-10 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <div class="size-8 text-slate-900 dark:text-white">
+                    <svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_6_319)">
+                            <path
+                                d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z"
+                                fill="currentColor"></path>
+                        </g>
+                        <defs>
+                            <clippath id="clip0_6_319">
+                                <rect fill="white" height="48" width="48"></rect>
+                            </clippath>
+                        </defs>
+                    </svg>
+                </div>
+                <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Portfolio</h2>
+            </div>
+            <div class="hidden md:flex items-center gap-8">
+                <nav class="flex items-center gap-6">
+                    <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Work</a>
+                    <a class="text-sm font-medium hover:text-primary transition-colors" href="#">About</a>
+                    <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Services</a>
+                    <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Contact</a>
+                </nav>
+                <button
+                    class="flex items-center justify-center rounded-lg h-10 px-6 bg-primary hover:bg-primary/90 text-white text-sm font-bold transition-all shadow-lg shadow-primary/20">
+                    Let's Talk
+                </button>
+            </div>
+            <!-- Mobile Menu Icon -->
+            <button class="md:hidden text-slate-900 dark:text-white">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+    </header>
+    <!-- Hero Section -->
+    <section class="w-full px-4 md:px-10 py-8 max-w-[1280px] mx-auto">
+        <div class="relative w-full rounded-2xl overflow-hidden min-h-[500px] md:min-h-[600px] flex items-end p-8 md:p-12 bg-cover bg-center group"
+            data-alt="Modern dashboard interface displayed on a laptop screen with data visualization charts in dark mode"
+            style="background-image: linear-gradient(180deg, rgba(16, 21, 34, 0) 0%, rgba(16, 21, 34, 0.8) 50%, rgba(16, 21, 34, 1) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuAwrvR5IAEEVv3qM6ABdw61NaAm7cuyGiUTcde0c-cZZuKCAhXjh8AtfVg0VNoKPkxJqiCM70bJD-ZIesB_28bYBlhM3c3rjj65w0IANFfMwLE5hjVTd3eq7_eGf2YnN9I_GhucujggprrU02Last9JEWdG3EPQ_BCQETq94UfXYrn4SWds3E3G3PVkGdf_Ebgml8aUhm7OgaTSMhITo_EpzwDN7PLbCz1NRHv6dVxtCSWeOoxsUG6pB-lC1tGWgN-Y_POYO0H32l0s');">
+            <div class="relative z-10 w-full max-w-4xl animate-fade-in-up">
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 backdrop-blur-sm border border-primary/30 text-primary text-xs font-bold mb-4 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-[16px]">verified</span> Case Study
+                </div>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] mb-4 tracking-tight">
+                    Fintech Dashboard <br class="hidden md:block" /> Redesign
+                </h1>
+                <p class="text-lg md:text-xl text-slate-300 max-w-2xl leading-relaxed">
+                    Simplifying complex financial data for everyday users to track their financial health with intuitive
+                    visualizations and smart insights.
+                </p>
+            </div>
+        </div>
+    </section>
+    <!-- Main Content Grid -->
+    <main class="w-full max-w-[1280px] mx-auto px-4 md:px-10 py-12 grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <!-- Sidebar (Sticky on Desktop) -->
+        <aside class="lg:col-span-4 order-2 lg:order-1">
+            <div class="lg:sticky lg:top-24 space-y-8">
+                <!-- Project Info Card -->
+                <div
+                    class="bg-white dark:bg-card-dark rounded-xl p-6 border border-gray-200 dark:border-border-dark shadow-sm">
+                    <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">info</span> Project Details
+                    </h3>
+                    <div class="space-y-6">
+                        <div class="group">
+                            <p class="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">Client</p>
+                            <p class="text-slate-900 dark:text-white font-semibold flex items-center gap-2">
+                                <span
+                                    class="size-6 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-xs">F</span>
+                                FinTech Corp
+                            </p>
+                        </div>
+                        <div class="w-full h-px bg-gray-100 dark:bg-border-dark"></div>
+                        <div>
+                            <p class="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">Timeline</p>
+                            <p class="text-slate-900 dark:text-white font-semibold">3 Months (Oct - Dec 2023)</p>
+                        </div>
+                        <div class="w-full h-px bg-gray-100 dark:bg-border-dark"></div>
+                        <div>
+                            <p class="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">Role</p>
+                            <p class="text-slate-900 dark:text-white font-semibold">Lead UI/UX Designer</p>
+                        </div>
+                        <div class="w-full h-px bg-gray-100 dark:bg-border-dark"></div>
+                        <div>
+                            <p class="text-slate-500 dark:text-slate-400 text-sm font-medium mb-3">Tools &amp; Tech</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="px-3 py-1 bg-slate-100 dark:bg-[#282c39] text-slate-700 dark:text-white text-xs font-medium rounded-lg border border-slate-200 dark:border-transparent">Figma</span>
+                                <span
+                                    class="px-3 py-1 bg-slate-100 dark:bg-[#282c39] text-slate-700 dark:text-white text-xs font-medium rounded-lg border border-slate-200 dark:border-transparent">React</span>
+                                <span
+                                    class="px-3 py-1 bg-slate-100 dark:bg-[#282c39] text-slate-700 dark:text-white text-xs font-medium rounded-lg border border-slate-200 dark:border-transparent">Tailwind</span>
+                                <span
+                                    class="px-3 py-1 bg-slate-100 dark:bg-[#282c39] text-slate-700 dark:text-white text-xs font-medium rounded-lg border border-slate-200 dark:border-transparent">Framer</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="mt-8 flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg h-12 bg-primary hover:bg-primary/90 text-white text-sm font-bold transition-all"
+                        href="#">
+                        Visit Live Site <span class="material-symbols-outlined text-sm">arrow_outward</span>
+                    </a>
+                </div>
+                <!-- Quick Stats -->
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-primary/10 rounded-xl p-4 text-center border border-primary/20">
+                        <p class="text-2xl font-black text-primary">+45%</p>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wide">User
+                            Retention</p>
+                    </div>
+                    <div class="bg-primary/10 rounded-xl p-4 text-center border border-primary/20">
+                        <p class="text-2xl font-black text-primary">2.5s</p>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wide">Avg
+                            Load Time</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <!-- Main Narrative Content -->
+        <article class="lg:col-span-8 order-1 lg:order-2 space-y-16">
+            <!-- Overview -->
+            <div>
+                <h2 class="text-3xl font-bold mb-6 text-slate-900 dark:text-white tracking-tight">Project Overview</h2>
+                <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                    FinTech Corp approached me to overhaul their existing customer dashboard. The original platform
+                    suffered from information overload, causing users to feel overwhelmed when checking their investment
+                    portfolios.
+                </p>
+                <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+                    The goal was to create a streamlined, cleaner interface that surfaced the most critical data first,
+                    allowing users to drill down into details only when necessary. We aimed to modernize the visual
+                    language while improving accessibility standards across the application.
+                </p>
+            </div>
+            <!-- The Challenge -->
+            <div
+                class="bg-white dark:bg-card-dark rounded-2xl p-8 border-l-4 border-primary shadow-sm dark:shadow-none">
+                <div class="flex items-start gap-4">
+                    <div class="p-3 rounded-lg bg-red-100 dark:bg-red-500/20 text-red-600 dark:text-red-400 shrink-0">
+                        <span class="material-symbols-outlined">warning</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">The Challenge</h3>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Users were bouncing from the dashboard within 15 seconds. Heatmaps showed that the
+                            navigation was confusing, and the sheer volume of numbers on the screen created cognitive
+                            load. The challenge was to reduce complexity without removing functionality for power users.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Design Process -->
+            <div>
+                <h2 class="text-3xl font-bold mb-8 text-slate-900 dark:text-white tracking-tight">The Process</h2>
+                <div class="space-y-12">
+                    <!-- Step 1 -->
+                    <div class="flex gap-6">
+                        <div class="flex flex-col items-center">
+                            <div
+                                class="size-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg shadow-lg shadow-primary/30 z-10">
+                                1</div>
+                            <div class="w-0.5 bg-gray-200 dark:bg-border-dark flex-1 my-2"></div>
+                        </div>
+                        <div class="pb-8">
+                            <h4 class="text-xl font-bold mb-2">Research &amp; Discovery</h4>
+                            <p class="text-slate-600 dark:text-slate-300 mb-4">
+                                I conducted 15 user interviews to understand pain points. We discovered that 80% of
+                                users only cared about 3 specific metrics: Total Balance, Recent Activity, and Monthly
+                                Spending.
+                            </p>
+                            <div class="w-full h-64 rounded-xl bg-cover bg-center"
+                                data-alt="User research sticky notes on a wall showing grouped insights and user flows"
+                                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCyjMkV4G8rwGQ6pKTsj8VWxmSV9vTq2kHLBoChbsW9S8QIME4uRs0wX-NufghKzaMRqh23smi3wXQi5IKypyoaOArvl-dMfK5-AZ2MiJWNBD-ez5hjfpmi6m-aWL8DtY1ARMHGO3vWUCZp-_082fjRg03_Ib4a7NWbK1WTWj--KwUcZWgxlprEimSEUXHHNHxYNY7HP7hnm0-A4mXVb9zKD1mzNdBz96HI53c8D8NnvGXm5CiqOissWS5yuhe6C8ySveXWY6IWA9Rx');">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="flex gap-6">
+                        <div class="flex flex-col items-center">
+                            <div
+                                class="size-10 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-white flex items-center justify-center font-bold text-lg z-10">
+                                2</div>
+                            <div class="w-0.5 bg-gray-200 dark:bg-border-dark flex-1 my-2"></div>
+                        </div>
+                        <div class="pb-8">
+                            <h4 class="text-xl font-bold mb-2">Wireframing &amp; Prototyping</h4>
+                            <p class="text-slate-600 dark:text-slate-300 mb-4">
+                                We created low-fidelity wireframes to test the new information architecture. The focus
+                                was on a "card-based" layout that grouped related information together.
+                            </p>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="w-full aspect-video rounded-xl bg-cover bg-center border border-gray-200 dark:border-border-dark"
+                                    data-alt="Low fidelity wireframe sketch on a tablet showing basic layout structure"
+                                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDyEdzMlpzA9OvDhsWU5YQG_bbcXDye5KEWqgHMGc6E1FBQ0hG_t-hcdEeV_eD6CgpMb8kPSwlDtGbdd9ph34Lb2PKGkVsoFXIHV1uqab3y56Eewz7wBVqhQfiVSiiZKbTCbRXZJp69sTVAvoLcSE6hbtFpcX9VYzzlkt0FdClJKrb-R5QfXdq2Qx_s8EZWLy7kQFieU06gpH8sARV1I3lT1Vzz7Ey5zqg42s-vylbcrGW-qElWCBdFH_5CA5qsHtDIj7wuBlMEmdkh');">
+                                </div>
+                                <div class="w-full aspect-video rounded-xl bg-cover bg-center border border-gray-200 dark:border-border-dark"
+                                    data-alt="Digital wireframes in Figma showing user flow connections"
+                                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBscLqYoWU898hhOIkR1Am7Qg2SRdUl7XMhlMDWdVZ72OmI-FL3roHGeDHl-lDjD72BI77hkWjgJ4wDEr3h3ANbKp9tc5L7bmYpsupk9wVXrZYrR103NB2ZP41y-S83xpf9IqCTvougSt1VRTTVlSeVu4ISVG9JR9UMQjaKHQqzwW0QEd51wJp5w3MvC7QiP60sCMTJ9nbrjNbsYvjrgcIfbvOQtlSxI7_7B5xOvIBFW9nLJZYwR_WHWDsp4QiaevAwm4H21ADddISf');">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="flex gap-6">
+                        <div class="flex flex-col items-center">
+                            <div
+                                class="size-10 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-white flex items-center justify-center font-bold text-lg z-10">
+                                3</div>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2">Final UI Design</h4>
+                            <p class="text-slate-600 dark:text-slate-300">
+                                The final UI adopted a dark-themed aesthetic to reduce eye strain for night-time
+                                traders. We used vibrant gradients for positive trends to make success feel rewarding.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- The Solution -->
+            <div>
+                <h2 class="text-3xl font-bold mb-6 text-slate-900 dark:text-white tracking-tight">The Solution</h2>
+                <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8">
+                    The redesigned dashboard introduced a customizable widget system. Users can now drag and drop the
+                    metrics they care about most to the top of the page. We also introduced "Smart Insights," a feature
+                    that uses AI to summarize weekly spending in plain English.
+                </p>
+                <div
+                    class="w-full rounded-2xl overflow-hidden shadow-2xl shadow-primary/10 border border-gray-200 dark:border-border-dark">
+                    <img alt="High resolution mockup of the final dashboard UI on a desktop screen showing charts and graphs"
+                        class="w-full h-auto object-cover"
+                        data-alt="High resolution mockup of the final dashboard UI on a desktop screen showing charts and graphs"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXbX3Ig6RtBTn3sgb9r-ek5utXSPb_Sg8wWROPxFjVHUXHwKFLFAlSq2I4eR4kwm_x_Gs38YC6vbHQ0xiFtYsLAM9yKCNBRiFuEUL-miD03qK6beaBQdyxJmDhSGc0mrtpP65yLeOLf8aAmGauY9IAdhcLpKZLF-OElM6LJ8XNkAiYmKD7IdBNI9xoZhREP8_pzDcSQiczahk14UKi-PAfwbPusc6kOKnCGbF4-iSm3DfNTioPOJMAmpvzQiKTzn05h9ZD3PABki7E" />
+                </div>
+            </div>
+        </article>
+    </main>
+    <!-- Visual Gallery Section -->
+    <section class="w-full bg-white dark:bg-[#0d1017] py-20 border-t border-gray-200 dark:border-border-dark">
+        <div class="max-w-[1280px] mx-auto px-4 md:px-10">
+            <div class="flex justify-between items-end mb-10">
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">Visual Gallery</h2>
+                    <p class="text-slate-500 dark:text-slate-400">A closer look at the components and mobile
+                        adaptations.</p>
+                </div>
+                <button
+                    class="hidden md:flex items-center gap-2 text-primary font-bold hover:text-primary/80 transition-colors">
+                    View Full Presentation <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[300px]">
+                <!-- Item 1 (Large) -->
+                <div class="lg:col-span-2 row-span-2 rounded-xl overflow-hidden group relative cursor-pointer">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                        data-alt="Code snippets and UI components design system style guide"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAG4K5Fk9oi6jzWhRoFNZqD-0K9k2SUM-B_R10dqavL-NGh7Lpgn6BcfpjIIvNkvmpKmDoEVwjLfPNAZd-cp70uGWNwF70xf-35949CsnMj4I_tNJOvLqWVOiY3xjLfdz5MS4eEmDQ8C0_xIiL_6ecGb7QXam3oLckAsGwqnrq3cA6IpVDIe4nyQZ0iM8bOOEuSkWURf-hppm-JKFJrW23eZhsHdk-DcdhYB2JJHNyAAyinuMhLV3yC5xjEOLR5_kn130_Ug1xvo2Aq');">
+                    </div>
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <p class="text-white font-bold">Design System Components</p>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="rounded-xl overflow-hidden group relative cursor-pointer bg-card-dark">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                        data-alt="Mobile app interface displaying analytics graphs on a phone screen held in hand"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCPaKSWgZwqrphXtTdIa-nHj4rIA30MASm0q2Ta4u28939KCdcdYnZZC6pQKd6gd_wtFWF3946uyMcRG9Fie5JTgoNZZmltqKwefYgJY5cFIml2FRKviJqCnEgDymfAN9pAvutOFob7dUVNCGK1_rzIlp20sxtw6eEkvEMnTg5AEw-s4F5FeCvhOlCoLQiUUpWcGhq5kBI6U1HkB-OR8Vn-F8WCAl6qk8xp8tqn8Js3PLEk6iWZ3KAe4f3WNGar5PnXqew2KCHvsBXj');">
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="rounded-xl overflow-hidden group relative cursor-pointer bg-card-dark">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                        data-alt="Marketing website homepage design on a laptop screen with colorful abstract graphics"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAZvi32V00kp4N7AtIy3TQgdiWb3xtaClxK18Hj2eMxLfO9tKn41T9fNob55dGr98NwSBSUv_iq_fdWO3UZK0tWwlzr1BZs2lwtqRrrMxqB3kNJmvU7IOnqIJuMVQb84iCjsMA9xg63S0zcRGP2GDrO-3H2l2dXYykgCmmbQKoLBACpyVZDUNjRqYztaJQ2SHkg1KE9mTRhNcdKUTlMiSgIv4FzM-VNNzY94h7GRxKmxcng38mN3LShI5pBR8H6-iRPnSifeUN_pbkl');">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Next Project Navigation -->
+    <section class="w-full py-20 px-4">
+        <div class="max-w-[960px] mx-auto">
+            <p
+                class="text-center text-slate-500 dark:text-slate-400 font-medium mb-4 uppercase tracking-widest text-xs">
+                Next Project</p>
+            <a class="group block relative rounded-2xl overflow-hidden aspect-[21/9] md:aspect-[3/1]" href="#">
+                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                    data-alt="Abstract vibrant gradient background representing an e-commerce project"
+                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCOJlYwWUY2Vo_ZTVVmlvKsYoDqz-RedPRQtp7LNzeCZ8g5AqTklvu3eDBzK_CAriMfBuHsRCcS68ZUNhLKYVKKBSCgRiAxWSiUPbXVf3d6np0_NpsPQzJgb9wo5lpw37eerKEt6oYmc_QUqhoSgch9Dw_0J2mVDiFRAn-Ve_s6mwyM9NILsKlF12BGaL4BTX89WXJtok4zLy8nujLGMLujdaiKMJ43bcecgViZTV6s8Eft-aMmFS8m0cv-_ENvk96X2EdH5gv8cy7c');">
+                </div>
+                <div
+                    class="absolute inset-0 bg-slate-900/60 group-hover:bg-slate-900/40 transition-colors duration-300 flex flex-col items-center justify-center p-6 text-center">
+                    <h3 class="text-3xl md:text-5xl font-black text-white mb-2">E-Commerce App 2.0</h3>
+                    <div class="flex items-center gap-2 text-white/80 group-hover:text-white transition-colors">
+                        <span class="text-sm font-medium">View Case Study</span>
+                        <span
+                            class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="border-t border-gray-200 dark:border-border-dark py-12 bg-white dark:bg-background-dark">
+        <div class="max-w-[1280px] mx-auto px-10 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-slate-500 dark:text-slate-400 text-sm">
+                © 2024 Portfolio. All rights reserved.
+            </div>
+            <div class="flex gap-6">
+                <a class="text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#">
+                    <span class="sr-only">Twitter</span>
+                    <svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24">
+                        <path
+                            d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84">
+                        </path>
+                    </svg>
+                </a>
+                <a class="text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#">
+                    <span class="sr-only">GitHub</span>
+                    <svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24">
+                        <path clip-rule="evenodd"
+                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                            fill-rule="evenodd"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
