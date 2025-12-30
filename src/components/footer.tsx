@@ -1,4 +1,6 @@
 
+import Image from "next/image";
+
 export function Footer() {
     return (
         <footer className="bg-background-light dark:bg-background-dark border-t border-gray-200 dark:border-gray-800 pt-16 pb-8">
@@ -11,9 +13,13 @@ export function Footer() {
                         <a className="hover:text-primary dark:hover:text-white transition-colors" href="#">X</a>
                     </div>
                     <div className="mb-6 md:mb-0 flex items-center gap-2">
-                        <span className="material-symbols-outlined text-5xl text-primary dark:text-white">
-                            terminal
-                        </span>
+                        <Image
+                            src="/images/logo-risqi.png"
+                            alt="Code with Risqi Logo"
+                            width={50}
+                            height={50}
+                            className="w-auto h-12"
+                        />
                         <span className="text-2xl font-bold text-primary dark:text-white">Code with Risqi</span>
                     </div>
                     <div className="flex space-x-6 text-xs font-bold uppercase tracking-wider text-text-muted-light dark:text-text-muted-dark">
