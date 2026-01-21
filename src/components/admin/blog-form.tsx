@@ -166,7 +166,7 @@ export function BlogForm({ blog, isEdit = false }: BlogFormProps) {
                     </button>
                 </div>
             </form>
-        </form >
+
         </>
     );
 }

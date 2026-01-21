@@ -112,9 +112,13 @@ export function Navbar() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-20">
                     <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-                        <span className="material-symbols-outlined text-3xl text-primary dark:text-white">
-                            terminal
-                        </span>
+                        <Image
+                            src="/images/logo-risqi.png"
+                            alt="Code with Risqi Logo"
+                            width={32}
+                            height={32}
+                            className="w-8 h-8 object-contain"
+                        />
                         <span className="font-bold text-xl tracking-tight text-primary dark:text-white">Code with Risqi</span>
                     </Link>
 
