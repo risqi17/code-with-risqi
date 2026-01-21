@@ -1,10 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { logout } from "@/app/actions/auth";
 
 export function AdminSidebar() {
     const pathname = usePathname();
+    const router = useRouter();
 
     const isActive = (path: string) => pathname === path;
 
@@ -113,6 +115,22 @@ export function AdminSidebar() {
                     <span className="text-sm font-medium">Settings</span>
                 </Link> */}
             </div>
+
+            <div className="px-4 pb-2">
+                <button
+                    onClick={async () => {
+                        await logout();
+                        router.push("/admin/login");
+                    }}
+                    className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-all group"
+                >
+                    <span className="material-symbols-outlined text-[20px]">
+                        logout
+                    </span>
+                    <span className="text-sm font-medium">Logout</span>
+                </button>
+            </div>
+
             <div className="p-4 border-t border-gray-200 dark:border-gray-800">
                 <button className="flex items-center gap-3 w-full p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
                     <div

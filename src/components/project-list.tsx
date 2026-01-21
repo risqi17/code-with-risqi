@@ -5,19 +5,34 @@ import Image from "next/image";
 import Link from "next/link";
 import { Project } from "@/lib/db";
 import { motion, AnimatePresence } from "framer-motion";
+import { loadMoreProjectsAction } from "@/app/actions/public";
 
 interface ProjectListProps {
-    projects: Project[];
+    initialProjects: Project[];
+    totalCount?: number; // Optional total count to know when to stop
 }
 
-export function ProjectList({ projects }: ProjectListProps) {
-    const [visibleCount, setVisibleCount] = useState(6);
+export function ProjectList({ initialProjects, totalCount = 9999 }: ProjectListProps) {
+    const [projects, setProjects] = useState<Project[]>(initialProjects);
+    const [loading, setLoading] = useState(false);
 
-    const displayedProjects = projects.slice(0, visibleCount);
-    const hasMore = visibleCount < projects.length;
+    // If we don't have a totalCount passed, we assume we have more if the last fetch returned the limit? 
+    // Or we rely on the parent validation. Better to rely on explicit totalCount if possible.
+    const hasMore = projects.length < totalCount;
 
-    const handleLoadMore = () => {
-        setVisibleCount((prev) => prev + 3);
+    const handleLoadMore = async () => {
+        setLoading(true);
+        try {
+            // Load next 3
+            const moreProjects = await loadMoreProjectsAction(projects.length, 3);
+            if (moreProjects.length > 0) {
+                setProjects(prev => [...prev, ...moreProjects]);
+            }
+        } catch (error) {
+            console.error("Failed to load more projects", error);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -26,8 +41,8 @@ export function ProjectList({ projects }: ProjectListProps) {
                 layout
                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
-                <AnimatePresence>
-                    {displayedProjects.map((project) => (
+                <AnimatePresence mode="popLayout">
+                    {projects.map((project) => (
                         <motion.div
                             layout
                             key={project.id}
@@ -52,13 +67,19 @@ export function ProjectList({ projects }: ProjectListProps) {
                                                 playsInline
                                                 className="object-cover w-full h-full"
                                             />
-                                        ) : (
+                                        ) : project.imageUrl && (project.imageUrl.startsWith('/') || project.imageUrl.startsWith('http')) ? (
                                             <Image
                                                 alt={project.title}
                                                 src={project.imageUrl}
                                                 fill
                                                 className="object-cover transition-transform duration-700 group-hover:scale-110"
                                             />
+                                        ) : (
+                                            <div className="w-full h-full flex items-center justify-center bg-gray-200 dark:bg-gray-800">
+                                                <span className="material-symbols-outlined text-gray-400 text-4xl">
+                                                    image
+                                                </span>
+                                            </div>
                                         )}
                                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
                                     </div>
@@ -101,9 +122,10 @@ export function ProjectList({ projects }: ProjectListProps) {
                 <div className="text-center">
                     <button
                         onClick={handleLoadMore}
-                        className="bg-primary hover:bg-black text-white px-8 py-3 rounded-xl font-medium transition-all shadow-lg hover:scale-105"
+                        disabled={loading}
+                        className="bg-primary hover:bg-black text-white px-8 py-3 rounded-xl font-medium transition-all shadow-lg hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                        Tampilkan lebih banyak
+                        {loading ? "Memuat..." : "Tampilkan lebih banyak"}
                     </button>
                 </div>
             )}

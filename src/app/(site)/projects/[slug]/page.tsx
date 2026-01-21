@@ -1,11 +1,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { getProjectBySlug, getProjects } from "@/lib/db";
+import { getProjectBySlug, getNextProject } from "@/lib/db";
 import { notFound } from "next/navigation";
 import { ImageGallery } from "@/components/image-gallery";
+import { cache } from "react";
 
-export const revalidate = 0; // Ensure fresh data from DB
+// Cache the project fetch to dedupe requests between generateMetadata and Page
+const getProject = cache((slug: string) => getProjectBySlug(slug));
 
 interface PageProps {
     params: Promise<{ slug: string }>;
@@ -15,7 +17,7 @@ import type { Metadata } from "next";
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const { slug } = await params;
-    const project = getProjectBySlug(slug);
+    const project = getProject(slug);
 
     if (!project) {
         return {
@@ -44,19 +46,36 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ProjectDetail({ params }: PageProps) {
     const { slug } = await params;
-    const project = getProjectBySlug(slug);
+    const project = getProject(slug);
 
     if (!project) {
         notFound();
     }
 
-    // Fetch all projects for "Next Project" navigation (simplistic approach: just take the next one or first)
-    const allProjects = getProjects();
-    const currentIndex = allProjects.findIndex(p => p.slug === slug);
-    const nextProject = allProjects[(currentIndex + 1) % allProjects.length];
+    const nextProject = getNextProject(project.id);
+
+    // JSON-LD Structured Data
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Project",
+        "name": project.title,
+        "description": project.description,
+        "image": project.imageUrl,
+        "dateCreated": project.year,
+        "creator": {
+            "@type": "Person",
+            "name": "Risqi Ahmad"
+        },
+        "url": `https://risqiahmad.com/projects/${project.slug}`
+    };
 
     return (
         <main className="bg-background-light dark:bg-background-dark min-h-screen">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+
             {/* Hero Section */}
             <section className="w-full px-4 md:px-10 py-8 max-w-7xl mx-auto">
                 <div className="relative w-full rounded-2xl overflow-hidden min-h-[500px] md:min-h-[600px] flex items-end p-8 md:p-12 group">
@@ -70,14 +89,21 @@ export default async function ProjectDetail({ params }: PageProps) {
                             playsInline
                             className="absolute inset-0 w-full h-full object-cover"
                         />
-                    ) : (
+                    ) : project.imageUrl && (project.imageUrl.startsWith('/') || project.imageUrl.startsWith('http')) ? (
                         <Image
                             src={project.imageUrl}
                             alt={project.title}
                             fill
                             className="object-cover"
                             priority
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
                         />
+                    ) : (
+                        <div className="absolute inset-0 w-full h-full bg-slate-800 flex items-center justify-center">
+                            <span className="material-symbols-outlined text-gray-600 text-6xl">
+                                image
+                            </span>
+                        </div>
                     )}
 
                     {/* Gradient Overlay */}
@@ -89,7 +115,7 @@ export default async function ProjectDetail({ params }: PageProps) {
                     {/* Content */}
                     <div className="relative z-10 w-full max-w-4xl animate-fade-in-up">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 backdrop-blur-sm border border-primary/30 text-primary dark:text-accent text-xs font-bold mb-4 uppercase tracking-wider bg-white/10">
-                            <span className="material-symbols-outlined text-[16px]">verified</span> Studi Kasus
+                            <span className="material-symbols-outlined text--[16px]">verified</span> Studi Kasus
                         </div>
                         <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] mb-4 tracking-tight font-display">
                             {project.title}
@@ -158,7 +184,6 @@ export default async function ProjectDetail({ params }: PageProps) {
                         </div>
                     </div>
                 </aside>
-
                 {/* content */}
                 <article className="lg:col-span-8 order-1 lg:order-2 space-y-16">
                     {/* Main Content Area */}
@@ -176,83 +201,74 @@ export default async function ProjectDetail({ params }: PageProps) {
                             </div>
                         )}
 
-                        {/* Text Content */}
-                        {project.content && project.content.length > 50 ? (
-                            <div className="prose dark:prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: project.content }} />
-                        ) : (
+                        {/* Structured Project Details */}
+                        {project.details && project.details.overview_title && (
                             <>
-                                {/* Default Template Content Structure */}
                                 <div>
-                                    <h2 className="text-3xl font-bold mb-6 text-text-light dark:text-white tracking-tight font-display">Gambaran Proyek</h2>
+                                    <h2 className="text-3xl font-bold mb-6 text-text-light dark:text-white tracking-tight font-display">
+                                        {project.details.overview_title}
+                                    </h2>
                                     <p className="text-lg text-text-muted-light dark:text-text-muted-dark leading-relaxed mb-6">
-                                        Proyek ini melibatkan perombakan menyeluruh dari platform yang ada. Desain asli
-                                        mengalami masalah kegunaan dan tidak memiliki identitas visual yang kohesif.
+                                        {project.details.overview_desc_1}
                                     </p>
                                     <p className="text-lg text-text-muted-light dark:text-text-muted-dark leading-relaxed">
-                                        Tujuannya adalah untuk membuat antarmuka yang ramping dan lebih bersih yang menampilkan data paling penting terlebih dahulu,
-                                        memungkinkan pengguna untuk menavigasi dengan mudah. Kami bertujuan untuk memodernisasi bahasa visual sambil meningkatkan aksesibilitas.
+                                        {project.details.overview_desc_2}
                                     </p>
                                 </div>
 
-                                <div className="bg-white dark:bg-surface-dark rounded-2xl p-8 border-l-4 border-primary dark:border-accent shadow-sm">
+                                <div className="bg-white dark:bg-surface-dark rounded-2xl p-8 border-l-4 border-primary dark:border-accent shadow-sm my-12">
                                     <div className="flex items-start gap-4">
                                         <div className="p-3 rounded-lg bg-red-100 dark:bg-red-500/20 text-red-600 dark:text-red-400 shrink-0">
                                             <span className="material-symbols-outlined">warning</span>
                                         </div>
                                         <div>
-                                            <h3 className="text-xl font-bold mb-3 text-text-light dark:text-white font-display">Tantangan</h3>
+                                            <h3 className="text-xl font-bold mb-3 text-text-light dark:text-white font-display">
+                                                {project.details.challenge_title}
+                                            </h3>
                                             <p className="text-text-muted-light dark:text-text-muted-dark leading-relaxed">
-                                                Pengguna mengalami kebingungan dengan navigasi dan arsitektur informasi.
-                                                Tantangannya adalah mengurangi kompleksitas tanpa menghilangkan fungsionalitas inti.
+                                                {project.details.challenge_desc}
                                             </p>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div>
-                                    <h2 className="text-3xl font-bold mb-8 text-text-light dark:text-white tracking-tight font-display">Proses</h2>
-                                    <div className="space-y-12">
-                                        {/* Step 1 */}
-                                        <div className="flex gap-6">
-                                            <div className="flex flex-col items-center">
-                                                <div className="size-10 rounded-full bg-primary dark:bg-accent text-white flex items-center justify-center font-bold text-lg shadow-lg shadow-primary/30 z-10">1</div>
-                                                <div className="w-0.5 bg-gray-200 dark:bg-gray-800 flex-1 my-2"></div>
-                                            </div>
-                                            <div className="pb-8 w-full">
-                                                <h4 className="text-xl font-bold mb-2 text-text-light dark:text-white">Riset & Penemuan</h4>
-                                                <p className="text-text-muted-light dark:text-text-muted-dark mb-4">
-                                                    Melakukan wawancara pengguna untuk memahami masalah dan menentukan persyaratan utama.
-                                                </p>
-                                            </div>
-                                        </div>
-                                        {/* Step 2 */}
-                                        <div className="flex gap-6">
-                                            <div className="flex flex-col items-center">
-                                                <div className="size-10 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-white flex items-center justify-center font-bold text-lg z-10">2</div>
-                                                <div className="w-0.5 bg-gray-200 dark:bg-gray-800 flex-1 my-2"></div>
-                                            </div>
-                                            <div className="pb-8 w-full">
-                                                <h4 className="text-xl font-bold mb-2 text-text-light dark:text-white">Wireframing & Prototyping</h4>
-                                                <p className="text-text-muted-light dark:text-text-muted-dark mb-4">
-                                                    Membuat wireframe low-fidelity untuk menguji arsitektur informasi baru.
-                                                </p>
-                                            </div>
-                                        </div>
-                                        {/* Step 3 */}
-                                        <div className="flex gap-6">
-                                            <div className="flex flex-col items-center">
-                                                <div className="size-10 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-white flex items-center justify-center font-bold text-lg z-10">3</div>
-                                            </div>
-                                            <div className="w-full">
-                                                <h4 className="text-xl font-bold mb-2 text-text-light dark:text-white">Desain UI Akhir</h4>
-                                                <p className="text-text-muted-light dark:text-text-muted-dark">
-                                                    Menerapkan identitas visual baru dan membuat mockup high-fidelity.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </>
+                        )}
+
+                        {/* Process Steps */}
+                        {project.processSteps && project.processSteps.length > 0 && (
+                            <div className="mb-12">
+                                <h2 className="text-3xl font-bold mb-8 text-text-light dark:text-white tracking-tight font-display">Proses</h2>
+                                <div className="space-y-12">
+                                    {project.processSteps.map((step, idx) => (
+                                        <div key={idx} className="flex gap-6">
+                                            <div className="flex flex-col items-center">
+                                                <div className={`size-10 rounded-full flex items-center justify-center font-bold text-lg z-10 
+                                                    ${idx === 0
+                                                        ? 'bg-primary dark:bg-accent text-white shadow-lg shadow-primary/30'
+                                                        : 'bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-white'
+                                                    }`}
+                                                >
+                                                    {idx + 1}
+                                                </div>
+                                                {idx < project.processSteps!.length - 1 && (
+                                                    <div className="w-0.5 bg-gray-200 dark:bg-gray-800 flex-1 my-2"></div>
+                                                )}
+                                            </div>
+                                            <div className="pb-8 w-full">
+                                                <h4 className="text-xl font-bold mb-2 text-text-light dark:text-white">{step.title}</h4>
+                                                <p className="text-text-muted-light dark:text-text-muted-dark">
+                                                    {step.description}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Additional Text Content (Legacy or Markdown) */}
+                        {project.content && (
+                            <div className="prose dark:prose-invert max-w-none mt-12" dangerouslySetInnerHTML={{ __html: project.content }} />
                         )}
 
                         {/* Gallery Section */}
@@ -267,21 +283,35 @@ export default async function ProjectDetail({ params }: PageProps) {
             </div>
 
             {/* Next Project Navigation */}
-            <section className="w-full py-20 px-4 border-t border-gray-200 dark:border-gray-800">
-                <div className="max-w-[960px] mx-auto">
-                    <p className="text-center text-text-muted-light dark:text-text-muted-dark font-medium mb-4 uppercase tracking-widest text-xs">Proyek Selanjutnya</p>
-                    <Link href={`/projects/${nextProject.slug}`} className="group block relative rounded-2xl overflow-hidden aspect-[21/9] md:aspect-[3/1]">
-                        <Image src={nextProject.imageUrl} alt={nextProject.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                        <div className="absolute inset-0 bg-slate-900/60 group-hover:bg-slate-900/40 transition-colors duration-300 flex flex-col items-center justify-center p-6 text-center">
-                            <h3 className="text-3xl md:text-5xl font-black text-white mb-2">{nextProject.title}</h3>
-                            <div className="flex items-center gap-2 text-white/80 group-hover:text-white transition-colors">
-                                <span className="text-sm font-medium">Lihat Studi Kasus</span>
-                                <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            {nextProject && (
+                <section className="w-full py-20 px-4 border-t border-gray-200 dark:border-gray-800">
+                    <div className="max-w-[960px] mx-auto">
+                        <p className="text-center text-text-muted-light dark:text-text-muted-dark font-medium mb-4 uppercase tracking-widest text-xs">Proyek Selanjutnya</p>
+                        <Link href={`/projects/${nextProject.slug}`} className="group block relative rounded-2xl overflow-hidden aspect-[21/9] md:aspect-[3/1]">
+                            {nextProject.imageUrl && (nextProject.imageUrl.startsWith('/') || nextProject.imageUrl.startsWith('http')) ? (
+                                <Image
+                                    src={nextProject.imageUrl}
+                                    alt={nextProject.title}
+                                    fill
+                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                    sizes="(max-width: 960px) 100vw, 960px"
+                                />
+                            ) : (
+                                <div className="absolute inset-0 bg-gray-800 flex items-center justify-center">
+                                    <span className="material-symbols-outlined text-gray-500 text-6xl">image</span>
+                                </div>
+                            )}
+                            <div className="absolute inset-0 bg-slate-900/60 group-hover:bg-slate-900/40 transition-colors duration-300 flex flex-col items-center justify-center p-6 text-center">
+                                <h3 className="text-3xl md:text-5xl font-black text-white mb-2">{nextProject.title}</h3>
+                                <div className="flex items-center gap-2 text-white/80 group-hover:text-white transition-colors">
+                                    <span className="text-sm font-medium">Lihat Studi Kasus</span>
+                                    <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                                </div>
                             </div>
-                        </div>
-                    </Link>
-                </div>
-            </section>
+                        </Link>
+                    </div>
+                </section>
+            )}
 
         </main>
     );

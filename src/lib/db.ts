@@ -16,38 +16,130 @@ export type Project = {
   imageUrl: string;
   videoUrl?: string; // Optional video URL
   gallery?: string; // Comma separated image URLs
-  content: string; // For detail page content
+  content: string; // For detail page content (Legacy/Custom)
+  details?: ProjectDetails;
+  processSteps?: ProjectProcessStep[];
+};
+
+export type ProjectDetails = {
+  project_id: number;
+  overview_title: string;
+  overview_desc_1: string;
+  overview_desc_2: string;
+  challenge_title: string;
+  challenge_desc: string;
+};
+
+export type ProjectProcessStep = {
+  id?: number;
+  project_id: number;
+  title: string;
+  description: string;
+  step_order: number;
 };
 
 export const getProjects = (): Project[] => {
   return db.prepare('SELECT * FROM projects ORDER BY id DESC').all() as Project[];
 };
 
-export const getProjectBySlug = (slug: string): Project | undefined => {
-  return db.prepare('SELECT * FROM projects WHERE slug = ?').get(slug) as Project | undefined;
-};
+// Pagination and Counts
+export function getPaginatedProjects(limit: number, offset: number): Project[] {
+  const stmt = db.prepare("SELECT * FROM projects ORDER BY id DESC LIMIT ? OFFSET ?");
+  const basicProjects = stmt.all(limit, offset) as Project[];
+  return basicProjects.map(project => ({
+    ...project,
+    details: getProjectDetails(project.id),
+    processSteps: getProjectProcessSteps(project.id)
+  }));
+}
 
-export const getProjectById = (id: number): Project | undefined => {
-  return db.prepare('SELECT * FROM projects WHERE id = ?').get(id) as Project | undefined;
-};
+export function getProjectsCount(): number {
+  const stmt = db.prepare("SELECT COUNT(*) as count FROM projects");
+  const result = stmt.get() as { count: number };
+  return result.count;
+}
+
+export function getBlogsCount(): number {
+  const stmt = db.prepare("SELECT COUNT(*) as count FROM blogs");
+  const result = stmt.get() as { count: number };
+  return result.count;
+}
+
+export function getTestimonialsCount(): number {
+  const stmt = db.prepare("SELECT COUNT(*) as count FROM testimonials");
+  const result = stmt.get() as { count: number };
+  return result.count;
+}
+
+export function getProjectBySlug(slug: string): Project | undefined {
+  const project = db.prepare('SELECT * FROM projects WHERE slug = ?').get(slug) as Project;
+  if (project) {
+    project.details = getProjectDetails(project.id);
+    project.processSteps = getProjectProcessSteps(project.id);
+  }
+  return project;
+}
+
+export function getProjectById(id: number): Project | undefined {
+  const project = db.prepare('SELECT * FROM projects WHERE id = ?').get(id) as Project;
+  if (project) {
+    project.details = getProjectDetails(project.id);
+    project.processSteps = getProjectProcessSteps(project.id);
+  }
+  return project;
+}
+
+export function getNextProject(currentId: number): Project {
+  // Try to get the next project (older ID, since we display newest first)
+  let next = db.prepare('SELECT * FROM projects WHERE id < ? ORDER BY id DESC LIMIT 1').get(currentId) as Project;
+
+  // If no older project, wrap around to the newest one
+  if (!next) {
+    next = db.prepare('SELECT * FROM projects ORDER BY id DESC LIMIT 1').get() as Project;
+  }
+
+  // Don't fetch details for the nav card, just basic info is enough, but type expects it.
+  // Ideally we'd have a lighter type, but for now this is fine.
+  return next;
+}
 
 export const createProject = (project: Omit<Project, 'id'>) => {
   const stmt = db.prepare(`
     INSERT INTO projects (slug, title, category, client, year, description, services, imageUrl, videoUrl, gallery, content)
-    VALUES (@slug, @title, @category, @client, @year, @description, @services, @imageUrl, @videoUrl, @gallery, @content)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `);
-  return stmt.run(project);
+  const info = stmt.run(
+    project.slug,
+    project.title,
+    project.category,
+    project.client,
+    project.year,
+    project.description,
+    project.services,
+    project.imageUrl,
+    project.videoUrl,
+    project.gallery,
+    project.content
+  );
+  return info.lastInsertRowid;
 };
 
-export const updateProject = (project: Project) => {
-  const stmt = db.prepare(`
-    UPDATE projects
-    SET slug = @slug, title = @title, category = @category, client = @client, year = @year,
-        description = @description, services = @services, imageUrl = @imageUrl, videoUrl = @videoUrl, gallery = @gallery, content = @content
-    WHERE id = @id
-  `);
-  return stmt.run(project);
-};
+export function updateProject(project: Partial<Project> & { id: number }) {
+  const fields: string[] = [];
+  const values: any[] = [];
+
+  Object.keys(project).forEach((key) => {
+    if (key !== 'id' && key !== 'details' && key !== 'processSteps') {
+      fields.push(`${key} = ?`);
+      values.push((project as any)[key]);
+    }
+  });
+
+  values.push(project.id);
+
+  const stmt = db.prepare(`UPDATE projects SET ${fields.join(', ')} WHERE id = ?`);
+  stmt.run(...values);
+}
 
 export const deleteProject = (id: number) => {
   return db.prepare('DELETE FROM projects WHERE id = ?').run(id);
@@ -139,6 +231,65 @@ export const updateTestimonial = (testimonial: Testimonial) => {
 
 export const deleteTestimonial = (id: number) => {
   return db.prepare('DELETE FROM testimonials WHERE id = ?').run(id);
+};
+
+
+// Project Details & Steps Functions
+
+export function getProjectDetails(projectId: number): ProjectDetails | undefined {
+  return db.prepare('SELECT * FROM project_details WHERE project_id = ?').get(projectId) as ProjectDetails;
+}
+
+export function getProjectProcessSteps(projectId: number): ProjectProcessStep[] {
+  return db.prepare('SELECT * FROM project_process_steps WHERE project_id = ? ORDER BY step_order ASC').all(projectId) as ProjectProcessStep[];
+}
+
+export function saveProjectDetails(details: ProjectDetails) {
+  const existing = getProjectDetails(details.project_id);
+  if (existing) {
+    const stmt = db.prepare(`
+            UPDATE project_details 
+            SET overview_title = ?, overview_desc_1 = ?, overview_desc_2 = ?, challenge_title = ?, challenge_desc = ?
+            WHERE project_id = ?
+        `);
+    stmt.run(details.overview_title, details.overview_desc_1, details.overview_desc_2, details.challenge_title, details.challenge_desc, details.project_id);
+  } else {
+    const stmt = db.prepare(`
+            INSERT INTO project_details (project_id, overview_title, overview_desc_1, overview_desc_2, challenge_title, challenge_desc)
+            VALUES (?, ?, ?, ?, ?, ?)
+        `);
+    stmt.run(details.project_id, details.overview_title, details.overview_desc_1, details.overview_desc_2, details.challenge_title, details.challenge_desc);
+  }
+}
+
+export function saveProjectProcessSteps(projectId: number, steps: ProjectProcessStep[]) {
+  // Transaction to replace steps
+  const deleteStmt = db.prepare('DELETE FROM project_process_steps WHERE project_id = ?');
+  const insertStmt = db.prepare(`
+        INSERT INTO project_process_steps (project_id, title, description, step_order)
+        VALUES (?, ?, ?, ?)
+    `);
+
+  const transaction = db.transaction(() => {
+    deleteStmt.run(projectId);
+    steps.forEach((step, index) => {
+      insertStmt.run(projectId, step.title, step.description, index + 1);
+    });
+  });
+  transaction();
+}
+
+export type User = {
+  id: number;
+  email: string;
+  password: string;
+  name: string;
+  role: string;
+  createdAt: string;
+};
+
+export const getUserByEmail = (email: string): User | undefined => {
+  return db.prepare('SELECT * FROM users WHERE email = ?').get(email) as User | undefined;
 };
 
 export default db;

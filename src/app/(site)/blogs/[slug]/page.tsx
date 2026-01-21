@@ -2,8 +2,6 @@ import { getBlogBySlug } from "@/lib/db";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import { FadeIn } from "@/components/fade-in";
 
 // Ensure static generation for better performance if possible, or just dynamic
@@ -75,9 +73,15 @@ export default async function BlogDetailPage({ params }: PageProps) {
 
                     {/* Content */}
                     <article className="prose prose-lg dark:prose-invert prose-headings:font-display prose-headings:font-bold prose-a:text-accent prose-img:rounded-2xl max-w-none text-text-light dark:text-gray-300">
-                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                            {blog.content}
-                        </ReactMarkdown>
+                        {/* Using whitespace-pre-wrap to preserve line breaks if it's plain text, 
+                 or safely rendering if simple html. 
+                 For now, let's assume it's text with paragraphs needing formatting, 
+                 or we can use a library if we had one. 
+                 Given no markdown lib, we'll try to just split by newlines if it looks like plain text.
+             */}
+                        {blog.content.split('\n').map((paragraph, index) => (
+                            paragraph.trim() ? <p key={index} className="mb-4 text-justify">{paragraph}</p> : null
+                        ))}
                     </article>
                 </div>
             </FadeIn>

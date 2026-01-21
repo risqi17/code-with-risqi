@@ -26,13 +26,19 @@ export function ProjectsTable({ projects }: { projects: Project[] }) {
                             >
                                 <td className="p-4">
                                     <div className="flex items-center gap-3">
-                                        <div className="h-10 w-14 rounded overflow-hidden relative bg-gray-700">
-                                            <Image
-                                                src={project.imageUrl}
-                                                alt={project.title}
-                                                fill
-                                                className="object-cover"
-                                            />
+                                        <div className="h-10 w-14 rounded overflow-hidden relative bg-gray-200 dark:bg-gray-800 flex items-center justify-center">
+                                            {project.imageUrl && (project.imageUrl.startsWith('/') || project.imageUrl.startsWith('http')) ? (
+                                                <Image
+                                                    src={project.imageUrl}
+                                                    alt={project.title}
+                                                    fill
+                                                    className="object-cover"
+                                                />
+                                            ) : (
+                                                <span className="material-symbols-outlined text-gray-400 text-[20px]">
+                                                    image
+                                                </span>
+                                            )}
                                         </div>
                                         <span className="font-medium text-gray-900 dark:text-white text-sm">
                                             {project.title}

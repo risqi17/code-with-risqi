@@ -66,9 +66,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  icons: {
-    icon: "/icon.png",
-  },
 };
 
 export default function RootLayout({
@@ -104,9 +101,7 @@ export default function RootLayout({
                 "longitude": 106.8456
               },
               "sameAs": [
-                "https://github.com/risqiahmad",
                 "https://linkedin.com/in/risqiahmad",
-                "https://twitter.com/risqiahmad"
               ],
               "description": "Jasa profesional pembuatan website, aplikasi mobile (Android/iOS), dan sistem informasi perusahaan (ERP, HRIS).",
               "founder": {

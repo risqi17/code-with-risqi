@@ -1,7 +1,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { getProjects, getBlogs, getTestimonials } from "@/lib/db";
+import { getPaginatedProjects, getProjectsCount, getBlogs, getTestimonials } from "@/lib/db";
 import { Faq } from "@/components/faq";
 import { BlogList } from "@/components/blog-list";
 import { ProjectList } from "@/components/project-list";
@@ -12,7 +12,8 @@ import { FadeIn } from "@/components/fade-in";
 export const revalidate = 0; // Ensure fresh data from DB
 
 export default function Home() {
-  const projects = getProjects();
+  const projects = getPaginatedProjects(6, 0);
+  const totalProjects = getProjectsCount();
   const blogs = getBlogs();
   const testimonials = getTestimonials();
   // We only want to show the first 3 projects on home page, but the design shows them specifically.
@@ -178,7 +179,7 @@ export default function Home() {
             </h2>
           </div>
 
-          <ProjectList projects={projects} />
+          <ProjectList initialProjects={projects} totalCount={totalProjects} />
         </FadeIn>
       </section>
 
