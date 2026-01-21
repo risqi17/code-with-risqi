@@ -1,3 +1,4 @@
+import Image from "next/image";
 
 export function Footer() {
     return (
@@ -9,9 +10,13 @@ export function Footer() {
                         <a className="hover:text-primary dark:hover:text-white transition-colors" target="_blank" href="https://www.threads.com/@codewithrisqi?igshid=NTc4MTIwNjQ2YQ==">Threads</a>
                     </div>
                     <div className="mb-6 md:mb-0 flex items-center gap-2">
-                        <span className="material-symbols-outlined text-5xl text-primary dark:text-white">
-                            terminal
-                        </span>
+                        <Image
+                            src="/images/logo-risqi.png"
+                            alt="Code with Risqi Logo"
+                            width={48}
+                            height={48}
+                            className="w-12 h-12 object-contain"
+                        />
                         <span className="text-2xl font-bold text-primary dark:text-white">Code with Risqi</span>
                     </div>
                     {/* <div className="flex space-x-6 text-xs font-bold uppercase tracking-wider text-text-muted-light dark:text-text-muted-dark">
