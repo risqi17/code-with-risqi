@@ -5,7 +5,7 @@ const dbPath = path.join(process.cwd(), 'risqi.db');
 const db = new Database(dbPath);
 
 try {
-    console.log('Adding gallery column to projects table...');
+    console.log('Adding gallersy column to projects table...');
     db.prepare('ALTER TABLE projects ADD COLUMN gallery TEXT').run();
     console.log('Successfully added gallery column.');
 } catch (error) {
