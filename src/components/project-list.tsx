@@ -39,7 +39,7 @@ export function ProjectList({ initialProjects, totalCount = 9999 }: ProjectListP
         <div className="space-y-12">
             <motion.div
                 layout
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
             >
                 <AnimatePresence mode="popLayout">
                     {projects.map((project) => (
@@ -56,8 +56,8 @@ export function ProjectList({ initialProjects, totalCount = 9999 }: ProjectListP
                                 href={`/projects/${project.slug}`}
                                 className="block group h-full"
                             >
-                                <div className="bg-surface-light dark:bg-surface-dark rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-800 transition-all hover:shadow-xl h-full flex flex-col">
-                                    <div className="rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800 aspect-[4/3] relative mb-6 group-hover:scale-[1.02] transition-transform duration-500">
+                                <div className="bg-surface-light dark:bg-surface-dark rounded-xl p-4 border border-gray-200 dark:border-gray-800 transition-colors hover:border-accent h-full flex flex-col">
+                                    <div className="rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800 aspect-[4/3] relative mb-4">
                                         {project.videoUrl ? (
                                             <video
                                                 src={project.videoUrl}
@@ -83,14 +83,14 @@ export function ProjectList({ initialProjects, totalCount = 9999 }: ProjectListP
                                         )}
                                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
                                     </div>
-                                    <div className="space-y-6 flex-1 flex flex-col">
+                                    <div className="space-y-5 flex-1 flex flex-col">
                                         <div>
-                                            <h3 className="text-2xl font-bold text-text-light dark:text-white font-display mb-2">{project.title}</h3>
-                                            <p className="text-text-muted-light dark:text-text-muted-dark line-clamp-3">
+                                            <h3 className="text-xl font-bold text-text-light dark:text-white font-display mb-2">{project.title}</h3>
+                                            <p className="text-sm text-text-muted-light dark:text-text-muted-dark line-clamp-3">
                                                 {project.description}
                                             </p>
                                         </div>
-                                        <div className="mt-auto space-y-6">
+                                        <div className="mt-auto space-y-5">
                                             <div className="grid grid-cols-2 gap-4 text-sm">
                                                 <div>
                                                     <p className="text-xs uppercase text-text-muted-light dark:text-text-muted-dark font-semibold mb-1">Klien</p>
@@ -105,7 +105,7 @@ export function ProjectList({ initialProjects, totalCount = 9999 }: ProjectListP
                                                 <p className="text-xs uppercase text-text-muted-light dark:text-text-muted-dark font-semibold mb-3">Layanan</p>
                                                 <div className="flex flex-wrap gap-2">
                                                     {project.services.split(',').map((tag, i) => (
-                                                        <span key={i} className="bg-blue-50 dark:bg-blue-900/30 text-accent px-3 py-1 rounded-xl text-xs font-semibold">{tag.trim()}</span>
+                                                        <span key={i} className="bg-teal-50 dark:bg-gray-800 text-accent px-3 py-1 rounded-lg text-xs font-semibold border border-teal-100 dark:border-gray-700">{tag.trim()}</span>
                                                     ))}
                                                 </div>
                                             </div>
@@ -123,7 +123,7 @@ export function ProjectList({ initialProjects, totalCount = 9999 }: ProjectListP
                     <button
                         onClick={handleLoadMore}
                         disabled={loading}
-                        className="bg-primary hover:bg-black text-white px-8 py-3 rounded-xl font-medium transition-all shadow-lg hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="bg-primary hover:bg-gray-800 text-white px-6 py-2.5 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed dark:bg-accent dark:text-gray-950 dark:hover:bg-teal-200"
                     >
                         {loading ? "Memuat..." : "Tampilkan lebih banyak"}
                     </button>

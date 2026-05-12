@@ -11,10 +11,10 @@ const manrope = Manrope({
 
 export const metadata: Metadata = {
   title: {
-    default: "Code with Risqi | Jasa Pembuatan Website & Aplikasi Terbaik",
+    default: "Code with Risqi | Website, Aplikasi, dan Sistem Bisnis",
     template: "%s | Code with Risqi",
   },
-  description: "Jasa pembuatan website, aplikasi mobile, dan sistem ERP perusahaan terpercaya di Indonesia. Solusi digital profesional dengan teknologi modern (Next.js, React) untuk pertumbuhan bisnis Anda.",
+  description: "Bangun website, toko online, dashboard, aplikasi mobile, dan sistem internal yang rapi, cepat, mudah digunakan, dan siap dikembangkan untuk kebutuhan bisnis.",
   keywords: [
     "Jasa Pembuatan Website",
     "Jasa Pembuatan Aplikasi",
@@ -33,8 +33,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "id_ID",
     url: "https://codewithrisqi.com",
-    title: "Code with Risqi | Solusi Digital & Software House",
-    description: "Partner teknologi terbaik untuk bisnis Anda. Melayani pembuatan website, aplikasi Android/iOS, dan sistem manajemen perusahaan.",
+    title: "Code with Risqi | Website dan Sistem Bisnis yang Siap Dipakai",
+    description: "Pembuatan website, toko online, dashboard, aplikasi mobile, dan sistem internal dengan desain rapi dan fondasi teknis yang jelas.",
     siteName: "Code with Risqi",
     images: [
       {
@@ -47,8 +47,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Code with Risqi - Jasa Pembuatan Website & Aplikasi",
-    description: "Jasa pembuatan website dan desain UI/UX profesional.",
+    title: "Code with Risqi - Website, Aplikasi, dan Sistem Bisnis",
+    description: "Website dan aplikasi yang rapi, cepat, dan mudah digunakan untuk kebutuhan bisnis.",
     creator: "@risqiahmad", // Replace with actual handle if available
   },
   metadataBase: new URL("https://codewithrisqi.com"),

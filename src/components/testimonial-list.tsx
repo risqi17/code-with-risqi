@@ -15,17 +15,17 @@ export function TestimonialList({ testimonials }: { testimonials: Testimonial[] 
     }
 
     return (
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-5">
             {testimonials.map((testimonial) => (
                 <div
                     key={testimonial.id}
-                    className="bg-white dark:bg-surface-dark p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 relative hover:border-primary/20 transition-colors"
+                    className="bg-white dark:bg-surface-dark p-5 rounded-xl border border-gray-200 dark:border-gray-800 relative hover:border-accent transition-colors"
                 >
-                    <span className="material-symbols-outlined text-4xl text-accent mb-4 block">
+                    <span className="material-symbols-outlined text-3xl text-accent mb-3 block">
                         format_quote
                     </span>
-                    <p className="text-text-muted-light dark:text-text-muted-dark mb-8 leading-relaxed italic line-clamp-4">
-                        "{testimonial.content}"
+                    <p className="text-sm text-text-muted-light dark:text-text-muted-dark mb-6 leading-relaxed italic line-clamp-4">
+                        {`"${testimonial.content}"`}
                     </p>
                     <div className="flex items-center justify-between border-t border-gray-100 dark:border-gray-700 pt-6">
                         <div className="flex items-center space-x-3">

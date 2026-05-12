@@ -5,9 +5,11 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 export function Navbar() {
     const { theme, setTheme } = useTheme();
+    const pathname = usePathname();
     const [mounted, setMounted] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
@@ -15,7 +17,7 @@ export function Navbar() {
     const [activeSection, setActiveSection] = useState("home");
 
     useEffect(() => {
-        setMounted(true);
+        const mountedFrame = window.requestAnimationFrame(() => setMounted(true));
         const handleScroll = () => {
             if (window.scrollY > 0) {
                 setIsScrolled(true);
@@ -46,6 +48,7 @@ export function Navbar() {
         sections.forEach((section) => observer.observe(section));
 
         return () => {
+            window.cancelAnimationFrame(mountedFrame);
             window.removeEventListener("scroll", handleScroll);
             sections.forEach((section) => observer.unobserve(section));
         };
@@ -65,6 +68,11 @@ export function Navbar() {
     }, [isOpen]);
 
     const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+        if (id === "shop") {
+            setIsOpen(false);
+            return;
+        }
+
         if (window.location.pathname !== "/") {
             return;
         }
@@ -94,41 +102,50 @@ export function Navbar() {
     };
 
     const navLinks = [
-        { id: "home", label: "Home", href: "/" },
-        { id: "works", label: "Projects", href: "/#works" },
-        { id: "services", label: "Services", href: "/#services" },
+        { id: "home", label: "Beranda", href: "/" },
+        { id: "works", label: "Karya", href: "/#works" },
+        { id: "shop", label: "Shop", href: "/shop" },
+        { id: "services", label: "Layanan", href: "/#services" },
         { id: "faqs", label: "FAQ", href: "/#faqs" },
-        { id: "blogs", label: "Blogs", href: "/#blogs" },
+        { id: "blogs", label: "Artikel", href: "/#blogs" },
     ];
+
+    const isNavLinkActive = (id: string) => {
+        if (id === "shop") {
+            return pathname.startsWith("/shop");
+        }
+
+        return pathname === "/" && activeSection === id;
+    };
 
     return (
         <header
             id="home"
             className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled && !isOpen
-                ? "bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 shadow-sm"
-                : "bg-transparent border-transparent"
+                ? "bg-background-light dark:bg-background-dark border-b border-gray-200 dark:border-gray-800"
+                : "bg-background-light dark:bg-background-dark border-b border-transparent"
                 }`}
         >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between items-center h-20">
+            <div className="site-container">
+                <div className="flex justify-between items-center h-16">
                     <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
                         <Image
                             src="/images/logo-risqi.png"
                             alt="Code with Risqi Logo"
                             width={32}
                             height={32}
-                            className="w-8 h-8 object-contain"
+                            className="w-7 h-7 object-contain"
                         />
-                        <span className="font-bold text-xl tracking-tight text-primary dark:text-white">Code with Risqi</span>
+                        <span className="font-bold text-lg tracking-tight text-primary dark:text-white">Code with Risqi</span>
                     </Link>
 
-                    <nav className="hidden md:flex space-x-8">
+                    <nav className="hidden md:flex space-x-6">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.id}
                                 href={link.href}
                                 onClick={(e) => scrollToSection(e, link.id)}
-                                className={`text-sm font-medium transition-colors ${activeSection === link.id
+                                className={`text-sm font-medium transition-colors ${isNavLinkActive(link.id)
                                     ? "text-primary dark:text-accent font-bold"
                                     : "text-text-muted-light dark:text-text-muted-dark hover:text-text-light dark:hover:text-text-dark"
                                     }`}
@@ -142,10 +159,10 @@ export function Navbar() {
                         {mounted && (
                             <button
                                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                                className="p-2 rounded-lg text-text-light dark:text-text-dark hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                                 aria-label="Toggle Dark Mode"
                             >
-                                <span className="material-symbols-outlined text-text-light dark:text-text-dark">
+                                <span className="material-symbols-outlined">
                                     {theme === "dark" ? "light_mode" : "dark_mode"}
                                 </span>
                             </button>
@@ -154,17 +171,20 @@ export function Navbar() {
                         <Link
                             href="https://wa.me/6285159120300?text=Halo%2C%20saya%20tertarik%20untuk%20konsultasi%20mengenai%20jasa%20Anda"
                             target="_blank"
-                            className="hidden sm:block bg-primary hover:bg-black text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-transform hover:scale-105 shadow-lg"
+                            rel="noopener noreferrer"
+                            className="hidden sm:block bg-primary hover:bg-gray-800 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors dark:bg-accent dark:text-gray-950 dark:hover:bg-teal-200"
                         >
-                            Konsultasi Gratis
+                            Diskusi Proyek
                         </Link>
 
                         {/* Mobile menu button */}
                         <button
-                            className="md:hidden p-2 z-50"
+                            className="md:hidden p-2 rounded-lg z-50 text-text-light dark:text-text-dark hover:bg-gray-100 dark:hover:bg-gray-800"
                             onClick={toggleMenu}
+                            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+                            aria-expanded={isOpen}
                         >
-                            <span className="material-symbols-outlined text-text-light dark:text-text-dark">
+                            <span className="material-symbols-outlined">
                                 {isOpen ? "close" : "menu"}
                             </span>
                         </button>
@@ -180,7 +200,7 @@ export function Navbar() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.2 }}
-                        className="md:hidden fixed inset-0 z-40 bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl flex flex-col pt-24 px-6 h-screen"
+                        className="md:hidden fixed inset-0 z-40 bg-background-light dark:bg-background-dark flex flex-col pt-20 px-6 h-screen"
                     >
                         <nav className="flex flex-col space-y-6">
                             {navLinks.map((link, i) => (
@@ -193,10 +213,10 @@ export function Navbar() {
                                     <Link
                                         href={link.href}
                                         onClick={(e) => scrollToSection(e, link.id)}
-                                        className={`text-2xl font-bold tracking-tight ${activeSection === link.id
+                                    className={`text-2xl font-bold tracking-tight ${isNavLinkActive(link.id)
                                             ? "text-primary dark:text-accent"
-                                            : "text-gray-900 dark:text-white"
-                                            }`}
+                                            : "text-text-light dark:text-white"
+                                        }`}
                                     >
                                         {link.label}
                                     </Link>
@@ -213,9 +233,9 @@ export function Navbar() {
                                     href="https://wa.me/6285159120300?text=Halo%2C%20saya%20tertarik%20untuk%20konsultasi%20mengenai%20jasa%20Anda"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="block w-full bg-primary hover:bg-blue-600 text-white text-center py-4 rounded-2xl text-lg font-bold shadow-lg shadow-primary/25 transition-all active:scale-95"
+                                    className="block w-full bg-primary hover:bg-gray-800 text-white text-center py-4 rounded-lg text-lg font-bold transition-colors dark:bg-accent dark:text-gray-950 dark:hover:bg-teal-200"
                                 >
-                                    Konsultasi Gratis
+                                    Diskusi Proyek
                                 </a>
                             </motion.div>
                         </nav>
@@ -227,12 +247,12 @@ export function Navbar() {
                             transition={{ delay: 0.5 }}
                             className="mt-auto pb-8 border-t border-gray-200 dark:border-gray-800/50 pt-6"
                         >
-                            <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">Connect with me</p>
+                            <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">Hubungi saya</p>
                             <div className="flex gap-4">
-                                <a href="#" className="size-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-300">
+                                <a href="#" aria-label="Email Code with Risqi" className="size-10 rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-accent">
                                     <span className="material-symbols-outlined">mail</span>
                                 </a>
-                                <a href="#" className="size-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-300">
+                                <a href="#" aria-label="Code with Risqi social profile" className="size-10 rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-accent">
                                     <span className="material-symbols-outlined">alternate_email</span>
                                 </a>
                             </div>

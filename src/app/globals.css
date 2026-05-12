@@ -1,30 +1,23 @@
 @import "tailwindcss";
 
-@import "tailwindcss";
-
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #F9FAFB;
-  --foreground: #1F2937;
+  --background: #F8FAFC;
+  --foreground: #111827;
   --surface: #FFFFFF;
-  --accent: #6366f1;
-  /* Indigo for light mode */
-  --text-muted: #6B7280;
+  --accent: #0F766E;
+  --text-muted: #4B5563;
 
   --font-manrope: "Manrope", sans-serif;
 }
 
 .dark {
-  --background: #050505;
-  /* True black from template */
-  --foreground: #FAFAFA;
-  /* Off-white */
-  --surface: #121212;
-  /* Dark grey */
-  --accent: #a78bfa;
-  /* Violet-400 for dark mode */
-  --text-muted: #A3A3A3;
+  --background: #0B0F14;
+  --foreground: #F9FAFB;
+  --surface: #111827;
+  --accent: #5EEAD4;
+  --text-muted: #CBD5E1;
 }
 
 @theme {
@@ -32,21 +25,20 @@
   --color-foreground: var(--foreground);
   --color-surface: var(--surface);
 
-  --color-primary: #1A1A1A;
+  --color-primary: #111827;
   --color-accent: var(--accent);
-  /* Dynamic accent */
 
-  --color-background-light: #F9FAFB;
-  --color-background-dark: #050505;
+  --color-background-light: #F8FAFC;
+  --color-background-dark: #0B0F14;
 
   --color-surface-light: #FFFFFF;
-  --color-surface-dark: #121212;
+  --color-surface-dark: #111827;
 
-  --color-text-light: #1F2937;
-  --color-text-dark: #FAFAFA;
+  --color-text-light: #111827;
+  --color-text-dark: #F9FAFB;
 
-  --color-text-muted-light: #6B7280;
-  --color-text-muted-dark: #A3A3A3;
+  --color-text-muted-light: #4B5563;
+  --color-text-muted-dark: #CBD5E1;
 
   --font-display: var(--font-manrope);
   --font-body: var(--font-manrope);
@@ -75,15 +67,75 @@ body {
   font-family: var(--font-body);
 }
 
+.site-container {
+  width: min(calc(100% - 2rem), 68rem);
+  margin-inline: auto;
+}
+
+.site-container-narrow {
+  width: min(calc(100% - 2rem), 48rem);
+  margin-inline: auto;
+}
+
+.site-section {
+  padding-block: 3.5rem;
+}
+
+.site-card {
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .site-container,
+  .site-container-narrow {
+    width: min(calc(100% - 3rem), var(--site-max-width, 68rem));
+  }
+
+  .site-container-narrow {
+    --site-max-width: 48rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-section {
+    padding-block: 4.75rem;
+  }
+
+  .site-card {
+    padding: 1.25rem;
+  }
+}
+
 .grid-pattern {
-  background-size: 40px 40px;
-  background-image:
-    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background: var(--background);
 }
 
 .dark .grid-pattern {
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background: var(--background);
+}
+
+a,
+button {
+  outline-offset: 3px;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
