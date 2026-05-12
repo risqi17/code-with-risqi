@@ -5,29 +5,29 @@ import { cn } from "@/lib/utils";
 
 const faqs = [
     {
-        question: "Layanan pengembangan apa saja yang Anda tawarkan?",
+        question: "Bisa bantu dari tahap ide, atau harus sudah ada brief lengkap?",
         answer:
-            "Saya spesialis dalam pengembangan Website dan Mobile App. Mulai dari landing page perusahaan, toko online (e-commerce), sistem informasi berbasis web, hingga aplikasi mobile untuk Android dan iOS menggunakan teknologi terbaru.",
+            "Bisa mulai dari dua-duanya. Kalau brief belum lengkap, saya bantu rapikan kebutuhan, prioritas fitur, dan alur pengguna dulu sebelum masuk ke desain atau pengembangan.",
     },
     {
-        question: "Teknologi apa yang Anda gunakan?",
+        question: "Jenis proyek apa yang paling cocok dikerjakan?",
         answer:
-            "Untuk frontend, saya menggunakan Next.js, React, dan Tailwind CSS. Untuk backend dan CMS, saya menggunakan Laravel dan WordPress yang fleksibel. Sedangkan untuk aplikasi mobile, saya menggunakan React Native atau Flutter untuk efisiensi tinggi.",
+            "Paling cocok untuk landing page bisnis, website company profile, toko online, dashboard, sistem internal, dan aplikasi mobile yang butuh tampilan rapi sekaligus struktur teknis yang siap dikembangkan.",
     },
     {
-        question: "Berapa lama waktu yang dibutuhkan untuk membuat website atau aplikasi?",
+        question: "Berapa lama proses pengerjaannya?",
         answer:
-            "Durasi proyek sangat bergantung pada kompleksitas fitur. Website landing page biasanya memakan waktu 1-2 minggu. Aplikasi web atau mobile yang kompleks bisa memakan waktu 1-3 bulan. Saya akan memberikan estimasi waktu yang lebih akurat setelah diskusi detail kebutuhan Anda.",
+            "Landing page biasanya 1-2 minggu. Website bisnis atau toko online bisa 2-6 minggu. Sistem yang lebih kompleks akan dibuat bertahap agar progresnya tetap terlihat dan mudah dievaluasi.",
     },
     {
-        question: "Apakah aplikasi yang dibuat sudah termasuk maintenance?",
+        question: "Apakah setelah rilis masih dibantu?",
         answer:
-            "Ya, setiap proyek pengembangan sudah termasuk garansi perbaikan bug (maintenance) gratis selama 1-3 bulan setelah peluncuran. Saya juga menawarkan paket maintenance jangka panjang jika Anda membutuhkan update fitur atau pemeliharaan server rutin.",
+            "Ya. Setiap proyek mendapat masa support untuk perbaikan bug setelah rilis. Untuk kebutuhan jangka panjang, bisa dilanjutkan dengan maintenance, pengembangan fitur, atau optimasi performa.",
     },
     {
-        question: "Apakah website/aplikasi saya akan SEO friendly dan responsif?",
+        question: "Apakah website akan cepat, responsif, dan ramah SEO?",
         answer:
-            "Tentu saja. Semua website yang saya bangun dioptimalkan untuk SEO (Search Engine Optimization) agar mudah ditemukan di Google. Selain itu, tampilan responsif (mobile-friendly) adalah standar wajib dalam setiap proyek saya untuk memastikan pengalaman pengguna yang baik di semua perangkat.",
+            "Ya. Struktur halaman, performa, tampilan mobile, metadata dasar, dan aksesibilitas menjadi bagian dari pekerjaan sejak awal, bukan tambahan di akhir proyek.",
     },
 ];
 
@@ -40,10 +40,10 @@ export function Faq() {
                 <div
                     key={index}
                     className={cn(
-                        "rounded-2xl p-6 border transition-all duration-300 group",
+                        "rounded-xl p-4 border transition-colors duration-300 group",
                         openIndex === index
-                            ? "bg-surface-light dark:bg-surface-dark border-gray-100 dark:border-white/5 shadow-sm"
-                            : "bg-transparent border-transparent hover:bg-surface-light dark:hover:bg-surface-dark hover:border-gray-100 dark:hover:border-white/5"
+                            ? "bg-surface-light dark:bg-surface-dark border-gray-200 dark:border-gray-800"
+                            : "bg-transparent border-gray-200 dark:border-gray-800 hover:bg-surface-light dark:hover:bg-surface-dark hover:border-accent"
                     )}
                 >
                     <button
@@ -65,7 +65,7 @@ export function Faq() {
                                 "material-symbols-outlined transition-colors",
                                 openIndex === index
                                     ? "text-text-muted-light dark:text-text-muted-dark"
-                                    : "text-text-muted-light dark:text-text-muted-dark group-hover:text-white"
+                                    : "text-text-muted-light dark:text-text-muted-dark group-hover:text-accent"
                             )}
                         >
                             {openIndex === index ? "remove" : "add"}

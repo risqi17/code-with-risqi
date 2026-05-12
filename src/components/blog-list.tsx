@@ -21,7 +21,7 @@ export function BlogList({ blogs }: BlogListProps) {
     };
 
     return (
-        <div className="space-y-6 max-w-4xl mx-auto">
+        <div className="space-y-5 site-container-narrow">
             <AnimatePresence mode="popLayout">
                 {displayedBlogs.map((blog) => (
                     <motion.div
@@ -30,14 +30,14 @@ export function BlogList({ blogs }: BlogListProps) {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.3 }}
-                        className="bg-white dark:bg-surface-dark p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 flex flex-col md:flex-row gap-6 transition-all hover:shadow-lg hover:-translate-y-1 group"
+                        className="bg-white dark:bg-surface-dark p-4 rounded-xl border border-gray-200 dark:border-gray-800 flex flex-col md:flex-row gap-5 transition-colors hover:border-accent group"
                     >
-                        <div className="w-full md:w-64 h-48 md:h-auto rounded-xl overflow-hidden shrink-0 relative bg-gray-100 dark:bg-gray-800">
+                        <div className="w-full md:w-52 h-40 md:h-auto rounded-lg overflow-hidden shrink-0 relative bg-gray-100 dark:bg-gray-800">
                             <Image
                                 src={blog.coverImage}
                                 alt={blog.title}
                                 fill
-                                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                className="object-cover"
                                 sizes="(max-width: 768px) 100vw, 300px"
                             />
                         </div>
@@ -49,12 +49,12 @@ export function BlogList({ blogs }: BlogListProps) {
                                     year: 'numeric'
                                 })}
                             </span>
-                            <h3 className="text-xl font-bold text-text-light dark:text-white mb-3 group-hover:text-accent transition-colors font-display line-clamp-2">
+                            <h3 className="text-lg font-bold text-text-light dark:text-white mb-2 group-hover:text-accent transition-colors font-display line-clamp-2">
                                 <Link href={`/blogs/${blog.slug}`}>
                                     {blog.title}
                                 </Link>
                             </h3>
-                            <p className="text-sm text-text-muted-light dark:text-text-muted-dark mb-4 line-clamp-2 leading-relaxed">
+                            <p className="text-sm text-text-muted-light dark:text-text-muted-dark mb-3 line-clamp-2 leading-relaxed">
                                 {blog.excerpt}
                             </p>
                             <Link
@@ -72,7 +72,7 @@ export function BlogList({ blogs }: BlogListProps) {
                 <div className="text-center pt-8">
                     <button
                         onClick={handleLoadMore}
-                        className="bg-primary hover:bg-black text-white px-8 py-3 rounded-xl font-medium transition-all shadow-lg hover:scale-105 hover:shadow-xl active:scale-95"
+                        className="bg-primary hover:bg-gray-800 text-white px-6 py-2.5 rounded-lg font-medium transition-colors dark:bg-accent dark:text-gray-950 dark:hover:bg-teal-200"
                     >
                         Tampilkan lebih banyak
                     </button>

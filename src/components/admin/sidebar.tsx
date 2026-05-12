@@ -9,6 +9,7 @@ export function AdminSidebar() {
     const router = useRouter();
 
     const isActive = (path: string) => pathname === path;
+    const isActiveSection = (path: string) => pathname === path || pathname.startsWith(`${path}/`);
 
     return (
         <aside className="hidden md:flex flex-col w-72 bg-white dark:bg-[#0c0f16] border-r border-gray-200 dark:border-gray-800 h-full flex-shrink-0 transition-colors duration-300">
@@ -41,12 +42,12 @@ export function AdminSidebar() {
                 </Link>
                 <Link
                     href="/admin/projects"
-                    className={`flex items-center px-4 py-2.5 text-sm font-medium rounded-xl transition-all duration-200 group ${isActive("/admin/projects")
+                    className={`flex items-center px-4 py-2.5 text-sm font-medium rounded-xl transition-all duration-200 group ${isActiveSection("/admin/projects")
                         ? "bg-primary text-white shadow-lg shadow-primary/25"
                         : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white"
                         }`}
                 >
-                    <span className={`material-symbols-outlined mr-3 text-[22px] transition-transform group-hover:scale-110 ${isActive("/admin/projects") ? "text-white" : "text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300"
+                    <span className={`material-symbols-outlined mr-3 text-[22px] transition-transform group-hover:scale-110 ${isActiveSection("/admin/projects") ? "text-white" : "text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300"
                         }`}>
                         folder_open
                     </span>
@@ -54,13 +55,27 @@ export function AdminSidebar() {
                 </Link>
 
                 <Link
-                    href="/admin/blogs"
-                    className={`flex items-center px-4 py-2.5 text-sm font-medium rounded-xl transition-all duration-200 group ${isActive("/admin/blogs")
+                    href="/admin/shop"
+                    className={`flex items-center px-4 py-2.5 text-sm font-medium rounded-xl transition-all duration-200 group ${isActiveSection("/admin/shop")
                         ? "bg-primary text-white shadow-lg shadow-primary/25"
                         : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white"
                         }`}
                 >
-                    <span className={`material-symbols-outlined mr-3 text-[22px] transition-transform group-hover:scale-110 ${isActive("/admin/blogs") ? "text-white" : "text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300"
+                    <span className={`material-symbols-outlined mr-3 text-[22px] transition-transform group-hover:scale-110 ${isActiveSection("/admin/shop") ? "text-white" : "text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300"
+                        }`}>
+                        storefront
+                    </span>
+                    Shop
+                </Link>
+
+                <Link
+                    href="/admin/blogs"
+                    className={`flex items-center px-4 py-2.5 text-sm font-medium rounded-xl transition-all duration-200 group ${isActiveSection("/admin/blogs")
+                        ? "bg-primary text-white shadow-lg shadow-primary/25"
+                        : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white"
+                        }`}
+                >
+                    <span className={`material-symbols-outlined mr-3 text-[22px] transition-transform group-hover:scale-110 ${isActiveSection("/admin/blogs") ? "text-white" : "text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300"
                         }`}>
                         article
                     </span>
@@ -77,12 +92,12 @@ export function AdminSidebar() {
                 </Link> */}
                 <Link
                     href="/admin/testimonials"
-                    className={`flex items-center px-4 py-2.5 text-sm font-medium rounded-xl transition-all duration-200 group ${isActive("/admin/testimonials")
+                    className={`flex items-center px-4 py-2.5 text-sm font-medium rounded-xl transition-all duration-200 group ${isActiveSection("/admin/testimonials")
                         ? "bg-primary text-white shadow-lg shadow-primary/25"
                         : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white"
                         }`}
                 >
-                    <span className={`material-symbols-outlined mr-3 text-[22px] transition-transform group-hover:scale-110 ${isActive("/admin/testimonials") ? "text-white" : "text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300"
+                    <span className={`material-symbols-outlined mr-3 text-[22px] transition-transform group-hover:scale-110 ${isActiveSection("/admin/testimonials") ? "text-white" : "text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300"
                         }`}>
                         reviews
                     </span>

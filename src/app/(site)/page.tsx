@@ -6,7 +6,6 @@ import { Faq } from "@/components/faq";
 import { BlogList } from "@/components/blog-list";
 import { ProjectList } from "@/components/project-list";
 import { TestimonialList } from "@/components/testimonial-list";
-import { motion } from "framer-motion";
 import { FadeIn } from "@/components/fade-in";
 
 export const revalidate = 0; // Ensure fresh data from DB
@@ -22,113 +21,110 @@ export default function Home() {
   return (
     <main>
       {/* Hero Section */}
-      <section id="hero" className="relative pt-20 pb-32 overflow-hidden dark:bg-background-dark">
-        <div className="absolute inset-0 grid-pattern pointer-events-none"></div>
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-accent opacity-10 blur-[120px] rounded-full pointer-events-none -z-10 dark:block hidden"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <FadeIn className="space-y-8">
-              <div className="inline-flex items-center px-3 py-1 rounded-xl border border-gray-200 dark:border-white/10 bg-white/50 dark:bg-white/5 backdrop-blur-sm">
-                <span className="w-2 h-2 rounded-full bg-green-500 mr-2 animate-pulse"></span>
+      <section id="hero" className="relative site-section bg-background-light dark:bg-background-dark">
+        <div className="site-container relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <FadeIn className="space-y-6">
+              <div className="inline-flex items-center px-3 py-1 rounded-lg border border-gray-200 dark:border-gray-700 bg-surface-light dark:bg-surface-dark">
+                <span className="w-2 h-2 rounded-full bg-accent mr-2"></span>
                 <span className="text-xs font-semibold uppercase tracking-wide text-text-muted-light dark:text-text-muted-dark">
-                  Open for new opportunities
+                  Menerima proyek baru
                 </span>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-text-light dark:text-white leading-tight font-display">
-                Bangun Citra Digital <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-500 dark:from-accent dark:to-teal-200">
-                  Yang Memukau
+              <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-text-light dark:text-white leading-tight font-display">
+                Website yang rapi, cepat, <br />
+                <span className="text-accent">
+                  dan siap menjual
                 </span>{" "}
                 <br />
-                Dan Berkelas
+                untuk bisnis Anda
               </h1>
-              <p className="text-lg text-text-muted-light dark:text-text-muted-dark max-w-xl leading-relaxed">
-                Kami membantu bisnis Anda tampil profesional dan terpercaya di era digital.
-                Solusi website modern yang tidak hanya indah dipandang, tetapi juga
-                efektif untuk meningkatkan konversi.
+              <p className="text-base text-text-muted-light dark:text-text-muted-dark max-w-xl leading-relaxed">
+                Saya membantu bisnis membangun website, toko online, dashboard, dan sistem internal
+                yang enak digunakan, mudah dipahami, dan siap berkembang bersama kebutuhan tim.
               </p>
               <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6">
                 <a
                   href="https://wa.me/6285159120300?text=Halo%2C%20saya%20tertarik%20untuk%20konsultasi%20mengenai%20jasa%20Anda"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-primary hover:bg-gray-900 text-white dark:bg-accent dark:text-black dark:hover:bg-white px-8 py-4 rounded-xl font-medium transition-all shadow-xl hover:shadow-2xl dark:shadow-accent/10 transform hover:-translate-y-1 inline-block"
+                  className="bg-primary hover:bg-gray-800 text-white dark:bg-accent dark:text-gray-950 dark:hover:bg-teal-200 px-6 py-3 rounded-lg font-medium transition-colors inline-block"
                 >
-                  Konsultasi Gratis
+                  Diskusi Proyek
                 </a>
                 <Link
                   href="/#works"
                   className="flex items-center text-text-light dark:text-white font-medium hover:text-accent dark:hover:text-accent transition-colors group"
                 >
-                  Lihat karya
+                  Lihat studi kasus
                   <span className="material-symbols-outlined ml-2 transform group-hover:translate-x-1 transition-transform">
                     arrow_forward
                   </span>
                 </Link>
               </div>
-              <div className="flex items-center space-x-6 pt-4 text-sm font-medium text-text-muted-light dark:text-text-muted-dark border-t border-gray-100 dark:border-white/10 mt-8">
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-4 text-sm font-medium text-text-muted-light dark:text-text-muted-dark border-t border-gray-200 dark:border-gray-800 mt-8">
                 <span className="flex items-center">
                   <span className="material-symbols-outlined text-lg mr-2 text-accent">
                     check_circle
                   </span>{" "}
-                  7+ Tahun Pengalaman
+                  7+ Tahun membangun produk
                 </span>
                 <span className="flex items-center">
                   <span className="material-symbols-outlined text-lg mr-2 text-accent">
                     check_circle
                   </span>{" "}
-                  Penilaian Bintang 5
+                  Desain responsif & aksesibel
                 </span>
                 <span className="flex items-center">
                   <span className="material-symbols-outlined text-lg mr-2 text-accent">
                     check_circle
                   </span>{" "}
-                  Tepat Waktu
+                  Estimasi jelas sejak awal
                 </span>
               </div>
             </FadeIn>
             <div className="relative">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-4 pt-12">
-                  <div className="bg-surface-light dark:bg-surface-dark p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-white/5 hover:border-accent/30 transition-colors group">
-                    <h3 className="text-4xl font-bold text-accent group-hover:text-amber-300 dark:group-hover:text-accent transition-colors">239+</h3>
+                  <div className="bg-surface-light dark:bg-surface-dark p-4 rounded-xl border border-gray-200 dark:border-gray-800 hover:border-accent transition-colors group">
+                    <h3 className="text-3xl font-bold text-accent">239+</h3>
                     <p className="text-xs font-semibold uppercase tracking-wider text-text-muted-light dark:text-text-muted-dark mt-1">
-                      Proyek Selesai
+                      Proyek dikirim
                     </p>
                   </div>
-                  <div className="bg-surface-light dark:bg-surface-dark p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-white/5 hover:border-accent/30 transition-colors group">
-                    <h3 className="text-4xl font-bold text-accent group-hover:text-amber-300 dark:group-hover:text-accent transition-colors">100+</h3>
+                  <div className="bg-surface-light dark:bg-surface-dark p-4 rounded-xl border border-gray-200 dark:border-gray-800 hover:border-accent transition-colors group">
+                    <h3 className="text-3xl font-bold text-accent">100+</h3>
                     <p className="text-xs font-semibold uppercase tracking-wider text-text-muted-light dark:text-text-muted-dark mt-1">
-                      Total Klien
+                      Bisnis terbantu
                     </p>
                   </div>
-                  <div className="rounded-2xl overflow-hidden shadow-lg border-4 border-white dark:border-white/10 relative h-48 group">
+                  <div className="rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800 relative h-40 group">
                     <Image
                       alt="Web Dashboard UI"
                       src="/images/hero-dashboard.png"
                       fill
-                      className="object-cover transform hover:scale-105 transition-transform duration-500"
+                      className="object-cover"
                     />
                   </div>
                 </div>
                 <div className="space-y-4">
-                  <div className="rounded-2xl overflow-hidden shadow-lg border-4 border-white dark:border-gray-700 h-64 relative">
+                  <div className="rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800 h-52 relative">
                     <Image
                       alt="Modern Code Editor"
                       src="/images/hero-code.png"
                       fill
-                      className="object-cover transform hover:scale-105 transition-transform duration-500"
+                      className="object-cover"
                     />
                   </div>
-                  <div className="rounded-2xl overflow-hidden shadow-lg border-4 border-white dark:border-gray-700 h-48 relative">
+                  <div className="rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800 h-40 relative">
                     <Image
                       alt="Web Design Workflow"
                       src="/images/hero-design.png"
                       fill
-                      className="object-cover transform hover:scale-105 transition-transform duration-500"
+                      className="object-cover"
                     />
                   </div>
-                  <div className="flex items-center text-2xl font-bold font-display text-text-light dark:text-white">
+                  <div className="flex items-center text-xl font-bold font-display text-text-light dark:text-white">
                     <span className="material-symbols-outlined mr-2">
                       terminal
                     </span>
@@ -168,14 +164,14 @@ export default function Home() {
       </section> */}
 
       {/* Recent Projects (Dynamic) */}
-      <section id="works" className="py-24 bg-gray-50 dark:bg-background-dark">
-        <FadeIn className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+      <section id="works" className="site-section bg-surface-light dark:bg-background-dark border-y border-gray-200 dark:border-gray-800">
+        <FadeIn className="site-container">
+          <div className="text-center mb-10">
             <span className="text-xs font-bold tracking-widest text-text-muted-light dark:text-text-muted-dark uppercase mb-4 block">
-              Proyek Terbaru
+              Studi Kasus
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-text-light dark:text-white font-display">
-              Memadukan fungsionalitas dengan estetika
+            <h2 className="text-3xl font-bold text-text-light dark:text-white font-display">
+              Pekerjaan nyata, bukan sekadar tampilan cantik
             </h2>
           </div>
 
@@ -184,41 +180,41 @@ export default function Home() {
       </section>
 
       {/* Services */}
-      <section id="services" className="py-16 bg-background-light dark:bg-background-dark">
-        <FadeIn className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10">
+      <section id="services" className="site-section bg-background-light dark:bg-background-dark">
+        <FadeIn className="site-container">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8">
             <div>
-              <span className="text-xs font-bold tracking-widest text-accent uppercase mb-2 block">Layanan</span>
-              <h2 className="text-3xl font-bold text-text-light dark:text-white font-display">Solusi Digital</h2>
+              <span className="text-xs font-bold tracking-widest text-accent uppercase mb-2 block">Apa yang bisa dibangun</span>
+              <h2 className="text-3xl font-bold text-text-light dark:text-white font-display">Website dan sistem yang benar-benar dipakai</h2>
               <p className="text-sm text-text-muted-light dark:text-text-muted-dark max-w-md mt-4 md:mt-0 text-right md:text-left">
-                Kami menyediakan layanan lengkap untuk kebutuhan transformasi digital Anda.
+                Dari halaman penjualan sampai aplikasi operasional, setiap proyek dibuat dengan alur yang jelas dan fondasi teknis yang rapi.
               </p>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[minmax(160px,auto)]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[minmax(140px,auto)]">
             {[
-              { icon: "web", title: "Pembuatan Landing Page", desc: "Halaman web profesional untuk konversi tinggi." },
-              { icon: "shopping_cart", title: "Ecommerce", desc: "Toko online canggih dengan fitur lengkap." },
-              { icon: "domain", title: "System Internal Perusahaan", desc: "ERP, HRIS, LEGAL, dan sistem manajemen lainnya." },
-              { icon: "smartphone", title: "Mobile Apps", desc: "Aplikasi Android & iOS yang responsif." },
-              { icon: "smart_toy", title: "AI Automation", desc: "Otomatisasi cerdas untuk efisiensi bisnis." },
-              { icon: "monitoring", title: "Dashboard Bisnis", desc: "Visualisasi data untuk pengambilan keputusan." },
+              { icon: "web", title: "Landing Page Bisnis", desc: "Halaman yang menjelaskan penawaran dengan tajam dan mengarahkan pengunjung untuk bertindak." },
+              { icon: "shopping_cart", title: "Toko Online", desc: "Pengalaman belanja yang sederhana, cepat, dan mudah dikelola oleh tim Anda." },
+              { icon: "domain", title: "Sistem Internal", desc: "ERP, HRIS, legal workflow, dan alat kerja lain yang mengikuti proses perusahaan." },
+              { icon: "smartphone", title: "Mobile Apps", desc: "Aplikasi mobile yang ringan, responsif, dan nyaman digunakan setiap hari." },
+              { icon: "automation", title: "Otomasi Workflow", desc: "Kurangi pekerjaan repetitif dengan alur otomatis yang tetap mudah dipantau." },
+              { icon: "monitoring", title: "Dashboard Bisnis", desc: "Data penting disusun menjadi tampilan yang cepat dibaca dan mudah ditindaklanjuti." },
             ].map((service, index) => (
               <div
                 key={index}
-                className={`group bg-surface-light dark:bg-surface-dark p-6 rounded-2xl border border-gray-200 dark:border-gray-800 hover:shadow-lg hover:border-accent/30 transition-all duration-300 flex flex-col justify-between ${index === 0 ? 'md:col-span-2 md:row-span-2 bg-gradient-to-br from-white to-blue-50/50 dark:from-surface-dark dark:to-blue-900/10' : ''
+                className={`group bg-surface-light dark:bg-surface-dark p-4 rounded-xl border border-gray-200 dark:border-gray-800 hover:border-accent transition-colors duration-300 flex flex-col justify-between ${index === 0 ? 'md:col-span-2 md:row-span-2' : ''
                   }`}
               >
                 <div>
-                  <div className={`${index === 0 ? 'w-12 h-12 mb-5' : 'w-10 h-10 mb-3'} bg-blue-50 dark:bg-blue-900/20 rounded-xl flex items-center justify-center text-accent group-hover:scale-110 transition-transform`}>
+                  <div className={`${index === 0 ? 'w-12 h-12 mb-5' : 'w-10 h-10 mb-3'} bg-teal-50 dark:bg-gray-800 rounded-lg flex items-center justify-center text-accent`}>
                     <span className={`material-symbols-outlined ${index === 0 ? 'text-2xl' : 'text-xl'}`}>{service.icon}</span>
                   </div>
                   <h3 className={`font-bold text-text-light dark:text-white mb-2 font-display ${index === 0 ? 'text-2xl' : 'text-lg'}`}>{service.title}</h3>
                   <p className="text-text-muted-light dark:text-text-muted-dark text-xs leading-relaxed">{service.desc}</p>
                 </div>
                 {index === 0 && (
-                  <div className="mt-6 flex items-center text-accent font-bold text-xs uppercase tracking-wide group-hover:translate-x-1 transition-transform cursor-pointer">
-                    Mulai Sekarang <span className="material-symbols-outlined ml-1 text-lg">arrow_forward</span>
+                  <div className="mt-6 flex items-center text-accent font-bold text-xs uppercase tracking-wide cursor-pointer">
+                    Diskusikan kebutuhan <span className="material-symbols-outlined ml-1 text-lg">arrow_forward</span>
                   </div>
                 )}
               </div>
@@ -227,66 +223,61 @@ export default function Home() {
         </FadeIn>
       </section>
 
-      <section id="faqs" className="py-24 bg-background-light dark:bg-background-dark">
-        <FadeIn className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="text-xs font-bold tracking-widest text-text-muted-light dark:text-text-muted-dark uppercase mb-4 block">Punya pertanyaan?</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-text-light dark:text-white font-display">Ini beberapa FAQ</h2>
+      <section id="faqs" className="site-section bg-background-light dark:bg-background-dark">
+        <FadeIn className="site-container-narrow">
+          <div className="text-center mb-10">
+            <span className="text-xs font-bold tracking-widest text-text-muted-light dark:text-text-muted-dark uppercase mb-4 block">Sebelum mulai</span>
+            <h2 className="text-3xl font-bold text-text-light dark:text-white font-display">Pertanyaan yang sering muncul</h2>
           </div>
           <Faq />
         </FadeIn>
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-gray-50 dark:bg-background-dark">
-        <FadeIn className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="text-xs font-bold tracking-widest text-text-muted-light dark:text-text-muted-dark uppercase mb-4 block">Masih Ragu?</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-text-light dark:text-white font-display">Lihat apa kata klien</h2>
+      <section className="site-section bg-surface-light dark:bg-background-dark border-y border-gray-200 dark:border-gray-800">
+        <FadeIn className="site-container">
+          <div className="text-center mb-10">
+            <span className="text-xs font-bold tracking-widest text-text-muted-light dark:text-text-muted-dark uppercase mb-4 block">Bukti dari klien</span>
+            <h2 className="text-3xl font-bold text-text-light dark:text-white font-display">Kepercayaan dibangun dari hasil kerja yang jelas</h2>
           </div>
           <TestimonialList testimonials={testimonials} />
         </FadeIn>
       </section>
 
       {/* Blog/Journal */}
-      <section id="blogs" className="py-24 bg-background-light dark:bg-background-dark">
-        <FadeIn className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="text-xs font-bold tracking-widest text-text-muted-light dark:text-text-muted-dark uppercase mb-4 block">Wawasan & Tren Digital</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-text-light dark:text-white font-display">Strategi desain untuk pertumbuhan bisnis</h2>
+      <section id="blogs" className="site-section bg-background-light dark:bg-background-dark">
+        <FadeIn className="site-container">
+          <div className="text-center mb-10">
+            <span className="text-xs font-bold tracking-widest text-text-muted-light dark:text-text-muted-dark uppercase mb-4 block">Catatan Praktis</span>
+            <h2 className="text-3xl font-bold text-text-light dark:text-white font-display">Ide sederhana untuk membuat produk digital lebih kuat</h2>
           </div>
           <BlogList blogs={blogs} />
         </FadeIn>
       </section>
 
       {/* CTA */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 dark:bg-background-dark">
-        <FadeIn className="max-w-5xl mx-auto bg-gray-900 dark:bg-gray-800 border border-gray-800 dark:border-gray-700 rounded-xl p-12 md:p-20 text-center relative overflow-hidden shadow-2xl">
-          {/* Background Effects */}
-          <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.2) 1px, transparent 1px)", backgroundSize: "24px 24px" }}></div>
-          <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-64 h-64 bg-accent/30 blur-[80px] rounded-full pointer-events-none"></div>
-          <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-64 h-64 bg-accent/30 blur-[80px] rounded-full pointer-events-none"></div>
-
+      <section className="site-section dark:bg-background-dark">
+        <FadeIn className="site-container-narrow bg-primary dark:bg-surface-dark border border-gray-800 dark:border-gray-700 rounded-xl p-8 md:p-10 text-center relative overflow-hidden">
           <div className="relative z-10 px-4">
-            <span className="text-xs font-bold tracking-widest text-accent uppercase mb-6 block">Siap Bertransformasi?</span>
+            <span className="text-xs font-bold tracking-widest text-accent uppercase mb-6 block">Mulai dari brief singkat</span>
 
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 font-display leading-tight">
-              Wujudkan Ide Anda, <br />
-              <span className="text-gray-400">Dapatkan konsultasi gratis</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-5 font-display leading-tight">
+              Punya ide yang perlu dibuat rapi? <br />
+              <span className="text-gray-300 dark:text-text-muted-dark">Mari ubah jadi produk yang bisa dipakai</span>
             </h2>
 
-            <p className="text-gray-300 mb-10 max-w-2xl mx-auto text-lg leading-relaxed">
-              Jangan biarkan ide hebat Anda hanya menjadi angan-angan. Mari berdiskusi dan bangun solusi digital terbaik untuk bisnis Anda.
+            <p className="text-gray-300 mb-8 max-w-2xl mx-auto text-base leading-relaxed">
+              Ceritakan tujuan, kendala, dan prioritas bisnis Anda. Dari sana saya bantu susun arah teknis, estimasi, dan langkah pertama yang masuk akal.
             </p>
 
             <a
               href="https://wa.me/6285159120300?text=Halo%2C%20saya%20tertarik%20untuk%20konsultasi%20mengenai%20jasa%20Anda"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white hover:bg-gray-100 text-gray-900 px-8 py-4 rounded-xl font-bold transition-all transform hover:scale-105 shadow-xl inline-flex items-center gap-2 group"
+              className="bg-white hover:bg-gray-100 text-gray-900 px-6 py-3 rounded-lg font-bold transition-colors inline-flex items-center gap-2 group"
             >
-              <span className="material-symbols-outlined text-xl group-hover:animate-bounce">chat</span>
-              Hubungi Kami Sekarang
+              <span className="material-symbols-outlined text-xl">chat</span>
+              Mulai Diskusi
             </a>
           </div>
         </FadeIn>

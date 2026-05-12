@@ -126,12 +126,25 @@ export const createProject = (project: Omit<Project, 'id'>) => {
 
 export function updateProject(project: Partial<Project> & { id: number }) {
   const fields: string[] = [];
-  const values: any[] = [];
+  const values: Array<string | number | undefined> = [];
+  const editableFields: Array<keyof Omit<Project, 'id' | 'details' | 'processSteps'>> = [
+    'slug',
+    'title',
+    'category',
+    'client',
+    'year',
+    'description',
+    'services',
+    'imageUrl',
+    'videoUrl',
+    'gallery',
+    'content',
+  ];
 
-  Object.keys(project).forEach((key) => {
-    if (key !== 'id' && key !== 'details' && key !== 'processSteps') {
+  editableFields.forEach((key) => {
+    if (project[key] !== undefined) {
       fields.push(`${key} = ?`);
-      values.push((project as any)[key]);
+      values.push(project[key]);
     }
   });
 
@@ -190,6 +203,128 @@ export const updateBlog = (blog: Blog) => {
 export const deleteBlog = (id: number) => {
   return db.prepare('DELETE FROM blogs WHERE id = ?').run(id);
 };
+
+export type ShopSpecification = {
+  label: string;
+  value: string;
+};
+
+export type ShopProduct = {
+  id: number;
+  slug: string;
+  title: string;
+  shortDescription: string;
+  description: string;
+  coverImage: string;
+  screenshots: string[];
+  videoUrl?: string;
+  specifications: ShopSpecification[];
+  includes: string[];
+  priceText: string;
+  isPublished: boolean;
+  sortOrder: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+type ShopProductRow = Omit<ShopProduct, 'screenshots' | 'specifications' | 'includes' | 'isPublished'> & {
+  screenshots: string;
+  specifications: string;
+  includes: string;
+  isPublished: number;
+};
+
+export type ShopProductInput = Omit<ShopProduct, 'id' | 'screenshots' | 'specifications' | 'includes' | 'isPublished' | 'createdAt' | 'updatedAt'> & {
+  screenshots: string;
+  specifications: string;
+  includes: string;
+  isPublished: number;
+};
+
+function parseJsonArray<T>(value: string | null | undefined): T[] {
+  if (!value) {
+    return [];
+  }
+
+  try {
+    const parsed = JSON.parse(value);
+    return Array.isArray(parsed) ? parsed as T[] : [];
+  } catch {
+    return [];
+  }
+}
+
+function parseShopProduct(row: ShopProductRow): ShopProduct {
+  return {
+    ...row,
+    screenshots: parseJsonArray<string>(row.screenshots).filter(Boolean),
+    specifications: parseJsonArray<ShopSpecification>(row.specifications).filter(spec => spec.label && spec.value),
+    includes: parseJsonArray<string>(row.includes).filter(Boolean),
+    isPublished: Boolean(row.isPublished),
+  };
+}
+
+export function getShopProducts(): ShopProduct[] {
+  const rows = db.prepare('SELECT * FROM shop_products ORDER BY sortOrder ASC, createdAt DESC').all() as ShopProductRow[];
+  return rows.map(parseShopProduct);
+}
+
+export function getPublishedShopProducts(): ShopProduct[] {
+  const rows = db.prepare('SELECT * FROM shop_products WHERE isPublished = 1 ORDER BY sortOrder ASC, createdAt DESC').all() as ShopProductRow[];
+  return rows.map(parseShopProduct);
+}
+
+export function getShopProductBySlug(slug: string, includeUnpublished = false): ShopProduct | undefined {
+  const query = includeUnpublished
+    ? 'SELECT * FROM shop_products WHERE slug = ?'
+    : 'SELECT * FROM shop_products WHERE slug = ? AND isPublished = 1';
+  const row = db.prepare(query).get(slug) as ShopProductRow | undefined;
+  return row ? parseShopProduct(row) : undefined;
+}
+
+export function getShopProductById(id: number): ShopProduct | undefined {
+  const row = db.prepare('SELECT * FROM shop_products WHERE id = ?').get(id) as ShopProductRow | undefined;
+  return row ? parseShopProduct(row) : undefined;
+}
+
+export function createShopProduct(product: ShopProductInput) {
+  const stmt = db.prepare(`
+    INSERT INTO shop_products (
+      slug, title, shortDescription, description, coverImage, screenshots, videoUrl,
+      specifications, includes, priceText, isPublished, sortOrder, createdAt, updatedAt
+    )
+    VALUES (
+      @slug, @title, @shortDescription, @description, @coverImage, @screenshots, @videoUrl,
+      @specifications, @includes, @priceText, @isPublished, @sortOrder, datetime('now'), datetime('now')
+    )
+  `);
+  return stmt.run(product);
+}
+
+export function updateShopProduct(id: number, product: ShopProductInput) {
+  const stmt = db.prepare(`
+    UPDATE shop_products
+    SET slug = @slug,
+        title = @title,
+        shortDescription = @shortDescription,
+        description = @description,
+        coverImage = @coverImage,
+        screenshots = @screenshots,
+        videoUrl = @videoUrl,
+        specifications = @specifications,
+        includes = @includes,
+        priceText = @priceText,
+        isPublished = @isPublished,
+        sortOrder = @sortOrder,
+        updatedAt = datetime('now')
+    WHERE id = @id
+  `);
+  return stmt.run({ ...product, id });
+}
+
+export function deleteShopProduct(id: number) {
+  return db.prepare('DELETE FROM shop_products WHERE id = ?').run(id);
+}
 
 
 export type Testimonial = {
